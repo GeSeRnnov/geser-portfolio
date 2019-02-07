@@ -112,9 +112,10 @@ line-height: 1.7;
 
 
 .tabIntroText{
-  font-size: 2em;
+  font-size: 1.5em;
   line-height: 1.5em;
   color: gray;
+  text-indent: 1em;
 }
 
 .tabIntroHeader{

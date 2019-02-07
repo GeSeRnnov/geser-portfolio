@@ -24,7 +24,7 @@ return (
     <div id="anchor-resume"/>
     <Resume />
     <footer>
-    <SendMail />
+    	<SendMail />
     </footer>
   </div>
 

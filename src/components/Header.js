@@ -73,26 +73,38 @@ return (
             <hr className="hr-light" />
             <h5 className="mb-4 " >
               Welcome to my portfolio site.
-            </h5>
-            
+            </h5>            
           </div>
-          <MDBCol md="6" xl="5" className="mt-xl-5">
-            <img src="" alt="" className="img-fluid" />
-          </MDBCol>
         </MDBRow>
 
-        <MDBRow>
-          <div className="dark-text text-left text-md-left col-md-6 mt-xl-7 mb-7">
-            <h3 className="h3-responsive  mt-sm-5">
-              Web developing in ReactJS.
-            </h3>
-            
-          </div>
-          <div className="dark-text text-center text-md-right col-md-6 mt-xl-5 mb-5">
-          </div>
-          <MDBCol md="6" xl="5" className="mt-xl-5">
-            <img src="" alt="" className="img-fluid" />
-          </MDBCol>
+        <MDBRow>  
+          <MDBCol>
+            <div className="dark-text text-center text-md-left col-md-3 mt-xl-6 mb-6">
+              <h3 className="h3-responsive  mt-sm-5">
+                Web developing:
+              </h3>
+            </div>
+            <div className="dark-text text-right col-md-3 mt-xl-6 mb-6  my-0 py-0">
+              <h3 className="h3-responsive  mt-sm-1">
+                - JavaScript
+              </h3>
+            </div>
+            <div className="dark-text text-right col-md-3 mt-xl-6 mb-6  my-0 py-0">
+              <h3 className="h3-responsive  mt-sm-1">
+                - ReactJS
+              </h3>
+            </div>
+            <div className="dark-text text-right col-md-3 mt-xl-6 mb-6  my-0 py-0">
+              <h3 className="h3-responsive  mt-sm-1">
+                - NodeJS
+              </h3>
+            </div>
+            <div className="dark-text text-right col-md-3 mt-xl-6 mb-6  my-0 py-0">
+              <h3 className="h3-responsive  mt-sm-1">
+                - PHP
+              </h3>
+            </div>
+          </MDBCol>          
         </MDBRow>
 
       </MDBContainer>
