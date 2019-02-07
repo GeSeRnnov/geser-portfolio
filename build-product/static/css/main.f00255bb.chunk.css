@@ -1,0 +1,15 @@
+body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:16}code{font-family:source-code-pro,Menlo,Monaco,Consolas,Courier New,monospace}
+
+
+/*!!!!!!!!!!!!!!!!!!!!              Header              !!!!!!!!!!!!!!!!!!!!*/#apppage .gradient{background:linear-gradient(45deg,rgba(248,255,254,.7),rgba(84,195,185,.7) 100%)}#apppage .view{background-image:url(/static/media/bg15.78509fe1.png);background-repeat:no-repeat;background-size:cover;background-position:50%;height:100vh}#apppage h5{line-height:1.7}.HelloJumbo{background:#f5f5f5!important}
+
+
+
+/*!!!!!!!!!!!!!!!!!!!!              Examples              !!!!!!!!!!!!!!!!!!!!*/.examplesTab{margin-top:6em;margin-bottom:5em;margin-left:2em!important;margin-right:0!important;max-width:95%!important;border:1px solid #f5f5f5;box-shadow:0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);border-radius:.125rem}.examplesTabCol{min-height:10em;background:#f0fbfa;padding-bottom:10px;padding-top:10px}.nav-tabs>.nav-link{background:#2bbbad;color:#fff;margin-right:1px}.nav-tabs>.active{background:#41c2b5!important;color:#fff!important;opacity:.9}.tabIntroText{font-size:2em;line-height:1.5em;color:grey}.tabIntroHeader{font-size:2.2em;line-height:1em;padding-bottom:.8em}
+
+/*!!!!!!!!!!!!!!!!!!!!              Cards              !!!!!!!!!!!!!!!!!!!!*/.cardKeys{font-weight:700}.cardVals{font-size:1.1em}
+
+
+
+/*!!!!!!!!!!        Footer        !!!!!!!!!!!!!*/footer{background-color:#3f3f3f;color:#d5d5d5;padding-top:2rem;margin-top:8em}hr.light{border-top:1px solid #d5d5d5;width:75%;margin-top:.8rem;margin-bottom:1rem}.sendForm{border:1px solid #999;border-radius:5px;padding-right:20px;padding-left:20px}.dataProcAgrmnt{font-size:10px;font-style:italic;padding-top:4em}.App{text-align:center}.App-logo{-webkit-animation:App-logo-spin 20s linear infinite;animation:App-logo-spin 20s linear infinite;height:40vmin}.App-header{background-color:#282c34;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:calc(10px + 2vmin);color:#fff}.App-link{color:#61dafb}@-webkit-keyframes App-logo-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes App-logo-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}
+/*# sourceMappingURL=main.f00255bb.chunk.css.map */
