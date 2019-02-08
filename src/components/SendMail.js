@@ -52,19 +52,23 @@ class SendMail extends React.Component{
 
 	handleSubmit(event){
 		event.preventDefault();
-
+		
+		let headers = {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		}
 		let recipient = 'villian_2007@mail.ru;gesernnov@gmail.com;' ;
+		
 
 		let dataMail = new FormData();
-		dataMail.append('Content-Type', 'application/x-www-form-urlencoded');
-		dataMail.append('to', encode(recipient));
-		dataMail.append('subject', encode('Attention! Have a mail from geser-portfolio.com'));
-		dataMail.append('message', encode('Name: ' + this.state.name + '\n' + 
+		dataMail.append("form-name", "contact", ...this.state);
+		dataMail.append("to", encode(recipient));
+		dataMail.append("subject", encode('Attention! Have a mail from geser-portfolio.com'));
+		dataMail.append("message", encode('Name: ' + this.state.name + '\n' + 
 								'Email: ' + this.state.email + '\n' + 
 								'Message: ' + this.state.text + '\n'));
 
 		return axios	
-			.post('/', dataMail)
+			.post('/', dataMail, {headers: headers})
 			.then( () => alert('success'))
 			.catch(error => console.log('SndMl->error', error));
 		// }
