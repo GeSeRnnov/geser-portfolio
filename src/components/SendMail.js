@@ -133,6 +133,7 @@ class SendMail extends React.Component{
 						</Col>
 					
 						<Col lg={8} >
+							<input type="hidden" name="form-name" value="contact" />
 							<FieldGroup
 								id="formControlText"
 								type="text"
