@@ -30,10 +30,9 @@ class SendMail extends React.Component{
 		super(props);
 
 		this.state = {
-			files: [],
 			name:'',
 			email: '',
-			text: ''
+			message: ''
 		};
 		this.handleChangeNm = this.handleChangeNm.bind(this);
 		this.handleChangeEml = this.handleChangeEml.bind(this);
@@ -56,22 +55,22 @@ class SendMail extends React.Component{
 		// let headers = {
 		// 	'Content-Type': 'application/x-www-form-urlencoded'
 		// }
-		let recipient = 'villian_2007@mail.ru;gesernnov@gmail.com;' ;
+		// let recipient = 'villian_2007@mail.ru;gesernnov@gmail.com;' ;
 		
 
 		
 
-		const data = new FormData();
-		data.append('to', recipient);
-		data.append('subject', 'Attention! Mail from geser-portfolio.com reaceived.');
-		data.append('message', 'Name:' + this.state.name + '\n' + 
-								'Email:' + this.state.email + '\n' + 
-								'Message:' + this.state.text);
+		// const data = new FormData();
+		// data.append('to', recipient);
+		// data.append('subject', 'Attention! Mail from geser-portfolio.com reaceived.');
+		// data.append('message', 'Name:' + this.state.name + '\n' + 
+		// 						'Email:' + this.state.email + '\n' + 
+		// 						'Message:' + this.state.text);
 
-		return axios	
-			.post('https://documentprepare.ru/api/sendMail.php', data)
-			.then(() => console.log('mail sended'))
-			.catch(error => console.log('SndMl->error', error));
+		// return axios	
+		// 	.post('https://documentprepare.ru/api/sendMail.php', data)
+		// 	.then(() => console.log('mail sended'))
+		// 	.catch(error => console.log('SndMl->error', error));
 
 		// let dataMail = new FormData();
 		// dataMail.append("form-name", "contact", ...this.state);
@@ -80,19 +79,19 @@ class SendMail extends React.Component{
 		// dataMail.append("message", encode('Name: ' + this.state.name + '\n' + 
 		// 						'Email: ' + this.state.email + '\n' + 
 		// 						'Message: ' + this.state.text + '\n'));
-		// fetch("/", {
-		// 		method: "POST",
-		// 		headers: { "Content-Type": "application/x-www-form-urlencoded" },
-		// 		body: encode({
-		// 		"form-name": form.getAttribute("name"),
-		// 		...this.state
-		// 		})
-		// 	})
-		// 	.then( () => console.log('navigateTo(form.getAttribute("action")'))
-		// 	.catch(error => console.log('SndMl->error', error));
-		// }
+
+		 fetch("/", {
+	        method: "POST",
+	        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+	        body: encode({ "form-name": "contact", ...this.state })
+	      })
+	        .then(() => alert("Success!"))
+	        .catch(error => alert(error));
+
+	      event.preventDefault();
 	}
 
+	handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
 	handleChangeNm(event){
 		this.setState({name: event.target.value});
@@ -106,18 +105,14 @@ class SendMail extends React.Component{
 
 
 	render(){
+		const { name, email, message } = this.state;
+
 		return(			
 			<div>
 
 
 			<form 
-				name="contact" 
-				method="post"
-				action="/thanks/"
-				netlify="true"
-				data-netlify="true"
-				data-netlify-honeypot="bot-field"
-				onSubmit={this.handleSubmit}
+				onSubmit={this.handleSubmit}				
 			>
 				<Grid className="sendForm">
 					<Row className="show-grid">
@@ -140,31 +135,24 @@ class SendMail extends React.Component{
 						</Col>
 					
 						<Col lg={8} >
-							<input type="hidden" name="form-name" value="contact" />
-							<FieldGroup
-								id="formControlText"
-								type="text"
-								label="Name"
-								name="name"
-								placeholder="Enter name"
-								onChange={this.handleChangeNm}
-							/>
-							<FieldGroup
-								id="formControlEmail"
-								type="email"
-								label="Email"
-								name="email"
-								placeholder="Enter Email"
-								onChange={this.handleChangeEml}
-							/>
-							
-			    			<FormGroup controlId="formControlTextArea">								
-								<FormControl 
-									onChange={this.handleChangeTxt} 
-									componentClass="textarea" 
-									name="message"
-									placeholder="Enter text message." />
-							</FormGroup>
+							<p>
+								<label>
+								Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
+								</label>
+								</p>
+								<p>
+								<label>
+								Your Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
+								</label>
+								</p>
+								<p>
+								<label>
+								Message: <textarea name="message" value={message} onChange={this.handleChange} />
+								</label>
+								</p>
+								<p>
+								<button type="submit">Send</button>
+								</p>
 						
 				    		
 						</Col>
@@ -221,3 +209,69 @@ export default SendMail;
 // 			                </FilePond>	
 
 // 			                
+
+
+
+
+
+
+
+// <form 
+// 				onSubmit={this.handleSubmit}				
+// 			>
+// 				<Grid className="sendForm">
+// 					<Row className="show-grid">
+// 						<Col lg={4}>
+// 							<br/>
+// 							<MDBBtn variant="contained" type="submit" >Send</MDBBtn>
+// 							<br/>
+// 							<br/>
+// 							<br/>
+// 							<FormGroup component="div">
+// 								<FormControl.Static>
+// 									{this.props.formText}
+// 									<br/>
+// 									<br/>
+// 									<i className="dataProcAgrmnt">
+// 										Sending message, You give your agreement to processing filled data.
+// 									</i>
+// 								</FormControl.Static>
+// 							</FormGroup>
+// 						</Col>
+					
+// 						<Col lg={8} >
+// 							<input type="hidden" name="form-name" value="contact" />
+// 							<FieldGroup
+// 								id="formControlText"
+// 								type="text"
+// 								label="Name"
+// 								name="name"
+// 								placeholder="Enter name"
+// 								onChange={this.handleChangeNm}
+// 							/>
+// 							<FieldGroup
+// 								id="formControlEmail"
+// 								type="email"
+// 								label="Email"
+// 								name="email"
+// 								placeholder="Enter Email"
+// 								onChange={this.handleChangeEml}
+// 							/>
+							
+// 			    			<FormGroup controlId="formControlTextArea">								
+// 								<FormControl 
+// 									onChange={this.handleChangeTxt} 
+// 									componentClass="textarea" 
+// 									name="message"
+// 									placeholder="Enter text message." />
+// 							</FormGroup>
+						
+				    		
+// 						</Col>
+// 					</Row>	
+// 				</Grid>
+// 				<br/>	
+// 			</form>
+
+
+
