@@ -85,16 +85,16 @@ class SendMail extends React.Component{
 	render(){
 		return(			
 			<div>
-			<form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+			<form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" hidden={true}>
 			  {/* You still need to add the hidden input with the form name to your JSX form */}
 			  <input type="hidden" name="form-name" value="contact" />
-			  <input type="hidden" name="name" value="contact" />
-			  <input type="hidden" name="email" value="contact" />
-			  <textarea type="hidden" name="message" value="textarea" />
+			  <input type="hidden" name="name" />
+			  <input type="hidden" name="email"  />
+			  <textarea type="hidden" name="message"  />
 			  
 			</form>
 
-			<form name="submt" onSubmit={this.handleSubmit} >
+			<form name="contact" onSubmit={this.handleSubmit} >
 				<Grid className="sendForm">
 					<Row className="show-grid">
 						<Col lg={4}>
