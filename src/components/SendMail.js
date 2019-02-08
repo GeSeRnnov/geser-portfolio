@@ -113,6 +113,8 @@ class SendMail extends React.Component{
 
 			<form 
 				data-netlify="true"
+				name="contact" 
+				method="post"
 				onSubmit={this.handleSubmit}				
 			>
 				<Grid className="sendForm">
@@ -136,6 +138,7 @@ class SendMail extends React.Component{
 						</Col>
 					
 						<Col lg={8} >
+							<input type="hidden" name="form-name" value="contact" />
 							<p>
 								<label>
 								Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
