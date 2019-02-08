@@ -51,32 +51,45 @@ class SendMail extends React.Component{
 // villian_2007@mail.ru
 
 	handleSubmit(event){
-		event.preventDefault();
-		const form = event.target;
-		let headers = {
-			'Content-Type': 'application/x-www-form-urlencoded'
-		}
+		// event.preventDefault();
+		// const form = event.target;
+		// let headers = {
+		// 	'Content-Type': 'application/x-www-form-urlencoded'
+		// }
 		let recipient = 'villian_2007@mail.ru;gesernnov@gmail.com;' ;
 		
 
-		let dataMail = new FormData();
-		dataMail.append("form-name", "contact", ...this.state);
+		
+
+		const data = new FormData();
+		data.append('to', recipient);
+		data.append('subject', 'Attention! Mail from geser-portfolio.com reaceived.');
+		data.append('message', 'Name:' + this.state.name + '\n' + 
+								'Email:' + this.state.email + '\n' + 
+								'Message:' + this.state.text);
+
+		return axios	
+			.post('https://cp-hosting.jino.ru/management/filemanager/files/domains/geser-portfolio.com/api/sendMail.php', data)
+			.then(() => console.log('mail sended'))
+			.catch(error => console.log('SndMl->error', error));
+
+		// let dataMail = new FormData();
+		// dataMail.append("form-name", "contact", ...this.state);
 		// dataMail.append("to", encode(recipient));
 		// dataMail.append("subject", encode('Attention! Have a mail from geser-portfolio.com'));
 		// dataMail.append("message", encode('Name: ' + this.state.name + '\n' + 
-								// 'Email: ' + this.state.email + '\n' + 
-								// 'Message: ' + this.state.text + '\n'));
-
-		fetch("/", {
-				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				body: encode({
-				"form-name": form.getAttribute("name"),
-				...this.state
-				})
-			})
-			.then( () => console.log('navigateTo(form.getAttribute("action")'))
-			.catch(error => console.log('SndMl->error', error));
+		// 						'Email: ' + this.state.email + '\n' + 
+		// 						'Message: ' + this.state.text + '\n'));
+		// fetch("/", {
+		// 		method: "POST",
+		// 		headers: { "Content-Type": "application/x-www-form-urlencoded" },
+		// 		body: encode({
+		// 		"form-name": form.getAttribute("name"),
+		// 		...this.state
+		// 		})
+		// 	})
+		// 	.then( () => console.log('navigateTo(form.getAttribute("action")'))
+		// 	.catch(error => console.log('SndMl->error', error));
 		// }
 	}
 
