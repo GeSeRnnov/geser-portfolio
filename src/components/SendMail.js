@@ -76,8 +76,17 @@ class SendMail extends React.Component{
 
 	render(){
 		return(			
+			<div>
+			<form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+			  {/* You still need to add the hidden input with the form name to your JSX form */}
+			  <input type="hidden" name="form-name" value="contact" />
+			  <input type="hidden" name="name" value="contact" />
+			  <input type="hidden" name="email" value="contact" />
+			  <textarea type="hidden" name="message" value="textarea" />
+			  
+			</form>
 
-			<form name="submt" onSubmit={this.handleSubmit}>
+			<form name="submt" onSubmit={this.handleSubmit} >
 				<Grid className="sendForm">
 					<Row className="show-grid">
 						<Col lg={4}>
@@ -103,6 +112,7 @@ class SendMail extends React.Component{
 								id="formControlText"
 								type="text"
 								label="Name"
+								name="name"
 								placeholder="Enter name"
 								onChange={this.handleChangeNm}
 							/>
@@ -110,12 +120,17 @@ class SendMail extends React.Component{
 								id="formControlEmail"
 								type="email"
 								label="Email"
+								name="email"
 								placeholder="Enter Email"
 								onChange={this.handleChangeEml}
 							/>
 							
 			    			<FormGroup controlId="formControlTextArea">								
-								<FormControl onChange={this.handleChangeTxt} componentClass="textarea" placeholder="Enter text message." />
+								<FormControl 
+									onChange={this.handleChangeTxt} 
+									componentClass="textarea" 
+									name="message"
+									placeholder="Enter text message." />
 							</FormGroup>
 						
 				    		
@@ -124,6 +139,7 @@ class SendMail extends React.Component{
 				</Grid>
 				<br/>	
 			</form>
+			</div>
 		);
 	}
 };
