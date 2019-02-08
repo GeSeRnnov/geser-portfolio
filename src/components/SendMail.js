@@ -61,11 +61,11 @@ class SendMail extends React.Component{
 
 		let dataMail = new FormData();
 		dataMail.append("form-name", "contact", ...this.state);
-		dataMail.append("to", encode(recipient));
-		dataMail.append("subject", encode('Attention! Have a mail from geser-portfolio.com'));
-		dataMail.append("message", encode('Name: ' + this.state.name + '\n' + 
-								'Email: ' + this.state.email + '\n' + 
-								'Message: ' + this.state.text + '\n'));
+		// dataMail.append("to", encode(recipient));
+		// dataMail.append("subject", encode('Attention! Have a mail from geser-portfolio.com'));
+		// dataMail.append("message", encode('Name: ' + this.state.name + '\n' + 
+								// 'Email: ' + this.state.email + '\n' + 
+								// 'Message: ' + this.state.text + '\n'));
 
 		return axios	
 			.post('/', dataMail, {headers: headers})
@@ -98,7 +98,7 @@ class SendMail extends React.Component{
 			  
 			</form>
 
-			<form name="contact" onSubmit={this.handleSubmit} data-netlify="true" >
+			<form name="contact" onSubmit={this.handleSubmit}>
 				<Grid className="sendForm">
 					<Row className="show-grid">
 						<Col lg={4}>
