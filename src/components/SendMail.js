@@ -69,7 +69,7 @@ class SendMail extends React.Component{
 								'Message:' + this.state.text);
 
 		return axios	
-			.post('https://cp-hosting.jino.ru/management/filemanager/files/domains/geser-portfolio.com/api/sendMail.php', data)
+			.post('https://documentprepare.ru/api/sendMail.php', data)
 			.then(() => console.log('mail sended'))
 			.catch(error => console.log('SndMl->error', error));
 
