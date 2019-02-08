@@ -139,24 +139,32 @@ class SendMail extends React.Component{
 					
 						<Col lg={8} >
 							<input type="hidden" name="form-name" value="contact" />
-							<p>
-								<label>
-								Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
-								</label>
-								</p>
-								<p>
-								<label>
-								Your Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
-								</label>
-								</p>
-								<p>
-								<label>
-								Message: <textarea name="message" value={message} onChange={this.handleChange} />
-								</label>
-								</p>
-								<p>
-								<button type="submit">Send</button>
-								</p>
+							
+
+							<FieldGroup
+								id="formControlText"
+								type="text"
+								label="Name"
+								name="name"
+								placeholder="Enter name"
+								onChange={this.handleChangeNm}
+							/>
+							<FieldGroup
+								id="formControlEmail"
+								type="email"
+								label="Email"
+								name="email"
+								placeholder="Enter Email"
+								onChange={this.handleChangeEml}
+							/>
+							
+			    			<FormGroup controlId="formControlTextArea">								
+								<FormControl 
+									onChange={this.handleChangeTxt} 
+									componentClass="textarea" 
+									name="message"
+									placeholder="Enter text message." />
+							</FormGroup>
 						
 				    		
 						</Col>
@@ -277,5 +285,26 @@ export default SendMail;
 // 				<br/>	
 // 			</form>
 
+
+
+// <input type="hidden" name="form-name" value="contact" />
+// 							<p>
+// 								<label>
+// 								Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
+// 								</label>
+// 								</p>
+// 								<p>
+// 								<label>
+// 								Your Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
+// 								</label>
+// 								</p>
+// 								<p>
+// 								<label>
+// 								Message: <textarea name="message" value={message} onChange={this.handleChange} />
+// 								</label>
+// 								</p>
+// 								<p>
+// 								<button type="submit">Send</button>
+// 								</p>
 
 
