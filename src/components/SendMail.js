@@ -94,7 +94,7 @@ class SendMail extends React.Component{
 			  
 			</form>
 
-			<form name="contact" onSubmit={this.handleSubmit} >
+			<form name="contact" onSubmit={this.handleSubmit} data-netlify="true" >
 				<Grid className="sendForm">
 					<Row className="show-grid">
 						<Col lg={4}>
