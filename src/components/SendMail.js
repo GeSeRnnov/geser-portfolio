@@ -52,7 +52,7 @@ class SendMail extends React.Component{
 
 	handleSubmit(event){
 		event.preventDefault();
-		
+		const form = event.target;
 		let headers = {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		}
@@ -67,9 +67,15 @@ class SendMail extends React.Component{
 								// 'Email: ' + this.state.email + '\n' + 
 								// 'Message: ' + this.state.text + '\n'));
 
-		return axios	
-			.post('/', dataMail, {headers: headers})
-			.then( () => alert('success'))
+		fetch("/", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: encode({
+				"form-name": form.getAttribute("name"),
+				...this.state
+				})
+			})
+			.then( () => console.log('navigateTo(form.getAttribute("action")'))
 			.catch(error => console.log('SndMl->error', error));
 		// }
 	}
@@ -98,7 +104,14 @@ class SendMail extends React.Component{
 			  
 			</form>
 
-			<form name="contact" onSubmit={this.handleSubmit}>
+			<form 
+				name="contact" 
+				method="post"
+				action="/thanks/"
+				data-netlify="true"
+				data-netlify-honeypot="bot-field"
+				onSubmit={this.handleSubmit}
+			>
 				<Grid className="sendForm">
 					<Row className="show-grid">
 						<Col lg={4}>
