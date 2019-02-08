@@ -112,6 +112,7 @@ class SendMail extends React.Component{
 
 
 			<form 
+				data-netlify="true"
 				onSubmit={this.handleSubmit}				
 			>
 				<Grid className="sendForm">
