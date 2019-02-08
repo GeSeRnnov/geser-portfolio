@@ -17,7 +17,13 @@ function FieldGroup({ id, label, ...props}) {
 
 // 
 
-let pondRef = {};
+// let pondRef = {};
+
+const encode = (data) => {
+return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 
 class SendMail extends React.Component{
 	constructor(props){
@@ -50,14 +56,16 @@ class SendMail extends React.Component{
 		let recipient = 'villian_2007@mail.ru;gesernnov@gmail.com;' ;
 
 		let dataMail = new FormData();
-		dataMail.append('to', recipient);
-		dataMail.append('subject', 'Attention! Have a mail from geser-portfolio.com');
-		dataMail.append('message', 'Name: ' + this.state.name + '\n' + 
+		dataMail.append('Content-Type', 'application/x-www-form-urlencoded');
+		dataMail.append('to', encode(recipient));
+		dataMail.append('subject', encode('Attention! Have a mail from geser-portfolio.com'));
+		dataMail.append('message', encode('Name: ' + this.state.name + '\n' + 
 								'Email: ' + this.state.email + '\n' + 
-								'Message: ' + this.state.text + '\n');
+								'Message: ' + this.state.text + '\n'));
 
 		return axios	
-			.post('api/sendMail.php', dataMail)
+			.post('/', dataMail)
+			.then( () => alert('success'))
 			.catch(error => console.log('SndMl->error', error));
 		// }
 	}
