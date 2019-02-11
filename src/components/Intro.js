@@ -12,20 +12,21 @@ export default function Intro() {
 					<MDBCol md="12">
 						<div className="tabIntroText">
 							<div className="tabIntroHeader">
-								At this tabs you can see some examples of my works.
+								At these tabs you can see some examples of my works.
 							</div>
 							<p>
-								I'm a beginner front-end developer. 
-								So, my speed of development is not as high as I would like. 
-								But I'm learning all the time, and my skills are growing.
+								I'm a beginner front-end developer and I'm learning all the time, and my skills are constantly growing.
+								So, my speed and quality of development is growing too. 
 							</p>
 							<p>
 								In web building I'm developing not only front-end part. 
-								Server side, also is developing by using PHP or NodeJS.								
+								Server side, also is developing by using PHP or NodeJS. But particularly this site is developed by using serverless technology.
 							</p>
 
 							<p>
-								Sousrces of this site you can see <a href="https://github.com/GeSeRnnov/geser-portfolio.git">here</a>.
+								You can see sources of this site <a href="https://github.com/GeSeRnnov/geser-portfolio.git">here</a>. 
+								If these examples are good enough for you, and you want something similar for your project, you can hire me.
+								Just fill out the form and send me a message at the bottom of the page.
 							</p>
 							<br/>
 						</div>

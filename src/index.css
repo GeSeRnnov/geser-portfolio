@@ -125,6 +125,15 @@ line-height: 1.7;
 
 }
 
+.bs-select ,.dataTables_info,.dataTables_paginate{
+  display: none;
+  height: 0px;
+}
+
+.dt-bootstrap4 td{
+  font-size: 1.1em;
+}
+
 /*--------------------              Examples              --------------------*/
 
 /*!!!!!!!!!!!!!!!!!!!!              Cards              !!!!!!!!!!!!!!!!!!!!*/

@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 // import {Container, Row, Col } from 'react-bootstrap';
 import Intro from './Intro';
 import Reactogram from './Reactogram';
+import CredCalc from './CredCalc';
 
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
@@ -123,12 +124,14 @@ function ExamplesTab() {
     					<MuiThemeProvider theme={theme}>
     						<Tabs indicatorColor="primary" value={value} onChange={handleChange} classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }} >
     							<Tab label="Examples" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
-    							<Tab label="reactogram" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
+                  <Tab label="reactogram" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
+    							<Tab label="cred. calc." classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
     							
     						</Tabs>
     					</MuiThemeProvider>
     					{value === 0 && <TabContainer ><Intro /></TabContainer>}
-    					{value === 1 && <TabContainer className={classes.typography}><Reactogram /></TabContainer>}
+              {value === 1 && <TabContainer className={classes.typography}><Reactogram /></TabContainer>}
+    					{value === 2 && <TabContainer className={classes.typography}><CredCalc /></TabContainer>}
     					
     				</div>
 		    	</MDBCol>

@@ -71,7 +71,7 @@ return (
               George Rukomin portfolio.{" "}
             </h1>
             <hr className="hr-light" />
-            <h5 className="mb-4 " >
+            <h5 className="mb-3 " >
               Welcome to my portfolio site.
             </h5>            
           </div>
@@ -96,12 +96,17 @@ return (
             </div>
             <div className="dark-text text-right col-md-3 mt-xl-6 mb-6  my-0 py-0">
               <h3 className="h3-responsive  mt-sm-1">
+                - PHP
+              </h3>
+            </div>
+            <div className="dark-text text-right col-md-3 mt-xl-6 mb-6  my-0 py-0">
+              <h3 className="h3-responsive  mt-sm-1">
                 - NodeJS
               </h3>
             </div>
             <div className="dark-text text-right col-md-3 mt-xl-6 mb-6  my-0 py-0">
               <h3 className="h3-responsive  mt-sm-1">
-                - PHP
+                - Serverless
               </h3>
             </div>
           </MDBCol>          
