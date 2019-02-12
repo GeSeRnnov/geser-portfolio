@@ -1,10 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-// import { FilePond, File } from 'react-filepond';
-// import  'filepond/dist/filepond.min.css';
-// import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
-import { FormGroup, ControlLabel, FormControl, Form, Button, Col, Row, Grid } from 'react-bootstrap';
 import { MDBBtn } from "mdbreact";
+import { FormGroup, ControlLabel, FormControl, Form, Button, Col, Row, Grid } from 'react-bootstrap';
 
 function FieldGroup({ id, label, ...props}) {
 	return(
@@ -17,7 +14,6 @@ function FieldGroup({ id, label, ...props}) {
 
 // 
 
-// let pondRef = {};
 
 const encode = (data) => {
 return Object.keys(data)
@@ -38,7 +34,6 @@ class SendMail extends React.Component{
 		this.handleChangeEml = this.handleChangeEml.bind(this);
 		this.handleChangeTxt = this.handleChangeTxt.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		// this.sendMail = this.sendMail.bind(this);
 	}
 
 
@@ -46,39 +41,9 @@ class SendMail extends React.Component{
 		// console.log('Filepont ready.' , this.pond);
 	}
 
-//villian_2007@mail.ru
-// villian_2007@mail.ru
 
 	handleSubmit(event){
-		// event.preventDefault();
-		// const form = event.target;
-		// let headers = {
-		// 	'Content-Type': 'application/x-www-form-urlencoded'
-		// }
-		// let recipient = 'villian_2007@mail.ru;gesernnov@gmail.com;' ;
-		
 
-		
-
-		// const data = new FormData();
-		// data.append('to', recipient);
-		// data.append('subject', 'Attention! Mail from geser-portfolio.com reaceived.');
-		// data.append('message', 'Name:' + this.state.name + '\n' + 
-		// 						'Email:' + this.state.email + '\n' + 
-		// 						'Message:' + this.state.text);
-
-		// return axios	
-		// 	.post('https://documentprepare.ru/api/sendMail.php', data)
-		// 	.then(() => console.log('mail sended'))
-		// 	.catch(error => console.log('SndMl->error', error));
-
-		// let dataMail = new FormData();
-		// dataMail.append("form-name", "contact", ...this.state);
-		// dataMail.append("to", encode(recipient));
-		// dataMail.append("subject", encode('Attention! Have a mail from geser-portfolio.com'));
-		// dataMail.append("message", encode('Name: ' + this.state.name + '\n' + 
-		// 						'Email: ' + this.state.email + '\n' + 
-		// 						'Message: ' + this.state.text + '\n'));
 
 		 fetch("/", {
 	        method: "POST",
@@ -181,130 +146,4 @@ class SendMail extends React.Component{
 export default SendMail;
 
 
-			// <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" hidden={true}>
-			//   {/* You still need to add the hidden input with the form name to your JSX form */}
-			//   <input type="hidden" name="form-name" value="contact" />
-			//   <input type="hidden" name="name" />
-			//   <input type="hidden" name="email"  />
-			//   <textarea type="hidden" name="message"  />
-			  
-			// </form>
-
-
-// 
-								// <ControlLabel>Сообщение</ControlLabel>
-
-// 
-// <FilePond ref={ref => {
-// 									this.pond = ref;
-// 									pondRef = ref;
-// 									//
-// 								}}
-// 								allowMultiple={true}                       
-// 								server="http://documentprepare.ru/api/"
-// 								oninit={() => this.handleInit() }
-// 								labelIdle = 'Перетащите сюда свои файлы/папки или <span class="filepond--label-action">Выберите их.</span>'
-
-// 								onupdatefiles={(fileItems) => {
-// 									// Set current file objects to this.state
-// 									this.setState({
-// 									  files: fileItems.map(fileItem => fileItem.file)
-// 									});
-// 								}}
-// 							>		  
-
-// 			                    {/* Update current files  */}
-// 			                    {this.state.files.map(file => 
-// 			                    	(
-// 			                        <File key={file} src={file} origin="local" />
-// 			                    ))}
-// 			                </FilePond>	
-
-// 			                
-
-
-
-
-
-
-
-// <form 
-// 				onSubmit={this.handleSubmit}				
-// 			>
-// 				<Grid className="sendForm">
-// 					<Row className="show-grid">
-// 						<Col lg={4}>
-// 							<br/>
-// 							<MDBBtn variant="contained" type="submit" >Send</MDBBtn>
-// 							<br/>
-// 							<br/>
-// 							<br/>
-// 							<FormGroup component="div">
-// 								<FormControl.Static>
-// 									{this.props.formText}
-// 									<br/>
-// 									<br/>
-// 									<i className="dataProcAgrmnt">
-// 										Sending message, You give your agreement to processing filled data.
-// 									</i>
-// 								</FormControl.Static>
-// 							</FormGroup>
-// 						</Col>
-					
-// 						<Col lg={8} >
-// 							<input type="hidden" name="form-name" value="contact" />
-// 							<FieldGroup
-// 								id="formControlText"
-// 								type="text"
-// 								label="Name"
-// 								name="name"
-// 								placeholder="Enter name"
-// 								onChange={this.handleChangeNm}
-// 							/>
-// 							<FieldGroup
-// 								id="formControlEmail"
-// 								type="email"
-// 								label="Email"
-// 								name="email"
-// 								placeholder="Enter Email"
-// 								onChange={this.handleChangeEml}
-// 							/>
-							
-// 			    			<FormGroup controlId="formControlTextArea">								
-// 								<FormControl 
-// 									onChange={this.handleChangeTxt} 
-// 									componentClass="textarea" 
-// 									name="message"
-// 									placeholder="Enter text message." />
-// 							</FormGroup>
-						
-				    		
-// 						</Col>
-// 					</Row>	
-// 				</Grid>
-// 				<br/>	
-// 			</form>
-
-
-
-// <input type="hidden" name="form-name" value="contact" />
-// 							<p>
-// 								<label>
-// 								Your Name: <input type="text" name="name" value={name} onChange={this.handleChange} />
-// 								</label>
-// 								</p>
-// 								<p>
-// 								<label>
-// 								Your Email: <input type="email" name="email" value={email} onChange={this.handleChange} />
-// 								</label>
-// 								</p>
-// 								<p>
-// 								<label>
-// 								Message: <textarea name="message" value={message} onChange={this.handleChange} />
-// 								</label>
-// 								</p>
-// 								<p>
-// 								<button type="submit">Send</button>
-// 								</p>
-
-
+	
