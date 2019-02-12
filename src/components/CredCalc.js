@@ -36,10 +36,27 @@ class Reactogram extends React.Component{
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCalculate = this.handleCalculate.bind(this);
+		this.handleReset = this.handleReset.bind(this);
 	}
 
+	handleReset = () => {
+		const inputs = {creditsum: 50000,
+				period: 36,
+				defaultRate: 4.5,
+				rate: 4.5
+		};
+		this.setState({
+			inputs: inputs,
+			calculated: false,
+			tableData: {},
+			dataLine: {},
+			totalInterestIncome: 0,
+			annuity: 0
+		});
+	}
 
 	handleCalculate = () => {
+		this.setState({ calculated: false });
 		let calcData = getData(this.state.inputs);
 		this.setState({ 
 			tableData: calcData.tableData,
@@ -47,7 +64,7 @@ class Reactogram extends React.Component{
 			annuity: calcData.annuity,
 			totalInterestIncome: calcData.totalInterestIncome
 		});
-		// this.setState({ dataLine: calcData.dataLine });
+		// console.log(this.state.dataLine);
 		this.setState({ calculated: true });
 	}
 
@@ -58,6 +75,8 @@ class Reactogram extends React.Component{
 			inputs
 		});
 	}
+
+
 
 	handleRateChange = e => {
 		let inputValue = Number(e.target.value) ;
@@ -72,7 +91,7 @@ class Reactogram extends React.Component{
 			<MDBContainer className="mx-0 mt-0" style={{minHeight: '70vh'}} fluid>
 				<MDBRow>
 					<MDBCol className="" lg="2">
-						<CredInputs inputs={this.state.inputs} handleChange={this.handleChange} handleCalculate={this.handleCalculate} handleRateChange={this.handleRateChange} />
+						<CredInputs inputs={this.state.inputs} handleChange={this.handleChange} handleCalculate={this.handleCalculate} handleReset={this.handleReset} handleRateChange={this.handleRateChange} />
 					</MDBCol>
 					<MDBCol className="p-0 m-0" lg="10"  style={{background: '', minHeight: '70vh', height: '70vh', overflow: 'scroll'  }} >
 						<div>

@@ -5,7 +5,7 @@ import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { FormControl} from 'react-bootstrap';
 
 
-export default function ReactoSettings({ inputs, handleChange, handleRateChange, handleCalculate }) {
+export default function ReactoSettings({ inputs, handleChange, handleRateChange, handleCalculate, handleReset }) {
 	// const {settings} = {props}
 	return(
 		<aside className="reactoSettings">
@@ -40,7 +40,14 @@ export default function ReactoSettings({ inputs, handleChange, handleRateChange,
 					"Simply enter the loan amount, term and interest rate in the fields and click calculate. " + 
 					"This calculator can be used for mortgage, auto, or any other fixed loan types."} 
 			>
-				Calculate
+				calculate
+			</MDBBtn>
+
+			<MDBBtn  
+				onClick={handleReset} 
+				className="my-2"
+			>
+				Reset
 			</MDBBtn>			
 		</aside>
 	);
