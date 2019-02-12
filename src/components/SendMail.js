@@ -123,13 +123,14 @@ class SendMail extends React.Component{
 								onChange={this.handleChangeEml}
 							/>
 							
-			    			<FormGroup controlId="formControlTextArea">								
-								<FormControl 
-									onChange={this.handleChangeTxt} 
-									componentClass="textarea" 
-									name="message"
-									placeholder="Enter text message." />
-							</FormGroup>
+			    			<FieldGroup
+								id="formControlText"
+								type="text"
+								label="Message"
+								name="message"
+								placeholder="Enter message"
+								onChange={this.handleChangeNm}
+							/>
 						
 				    		
 						</Col>
@@ -146,10 +147,16 @@ class SendMail extends React.Component{
 export default SendMail;
 
 
-	
 
 
 
+	// <FormGroup controlId="formControlTextArea">								
+	// 							<FormControl 
+	// 								onChange={this.handleChangeTxt} 
+	// 								componentClass="textarea" 
+	// 								name="message"
+	// 								placeholder="Enter text message." />
+	// 						</FormGroup>
 
 
 	// <FormGroup controlId="formControlTextArea">								
