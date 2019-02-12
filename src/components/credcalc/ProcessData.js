@@ -1,5 +1,6 @@
 // import React from 'react';
 import numeral from 'numeral';
+import moment from 'moment';
 
 export default function getData( inputs, type ) {
 
@@ -41,7 +42,6 @@ let tableData = {
 			sort:"asc",
 			width: 180
 		},
-
 	]
 };
 
@@ -75,62 +75,58 @@ let annuity = amount *  rate * Math.pow((1 + rate),period)/( Math.pow((1 + rate)
 let interestIncome = amount * rate;
 let totalInterestIncome = 0;
 
-let dataRows = [];
-let dataRow = {};
+let tableRows = [];
+let tableRow = {};
+let dataLine = [];
+let chartRow = {};
+let dates = [];
+const nowDate = Date.now();
 
-switch(type){
-	case 'table': {
-		for ( let i = 1; i <= period; i++ ){
-			interestIncome = amount * rate;
-			totalInterestIncome += interestIncome;
-			amount -= annuity - interestIncome;
-			dataRow = {
-				month: i,
-				payment: numeral(annuity).format('$0,0.00'),
-				principal: numeral(annuity - interestIncome).format('$0,0.00'),
-				interest: numeral(interestIncome).format('$0,0.00'),
-				totalTnterest: numeral(totalInterestIncome).format('$0,0.00'),
-				balance: numeral(amount.toFixed(2)).format('$0,0.00')
-			}
+chartRow['payment'] = [];
+chartRow['principal'] = [];
+chartRow['interest'] = [];
+chartRow['totalTnterest'] = [];
+chartRow['balance'] = [];
 
-			dataRows.push(dataRow);
-		}
-		tableData.rows = dataRows;
-		return tableData;
+for ( let i = 1; i <= period; i++ ){
+	interestIncome = amount * rate;
+	totalInterestIncome += interestIncome;
+	amount -= annuity - interestIncome;
+	
+	tableRow = {
+
+		month: moment(nowDate.clone).add(i-1, "month").format("MMM YYYY"),
+		payment: numeral(annuity).format('$0,0.00'),
+		principal: numeral(annuity - interestIncome).format('$0,0.00'),
+		interest: numeral(interestIncome).format('$0,0.00'),
+		totalTnterest: numeral(totalInterestIncome).format('$0,0.00'),
+		balance: numeral(amount.toFixed(2)).format('$0,0.00')
 	}
-	case 'chart': {
-		dataRow['payment'] = [];
-		dataRow['principal'] = [];
-		dataRow['interest'] = [];
-		dataRow['totalTnterest'] = [];
-		dataRow['balance'] = [];
-		for ( let i = 1; i <= period; i++ ){
-			interestIncome = amount * rate;
-			totalInterestIncome += interestIncome;
-			amount -= annuity - interestIncome;
+	chartLabels.push(moment(nowDate.clone).add(i-1, "month").format("MMM YYYY"));
+	chartRow['payment'].push(Math.round(annuity));
+	chartRow['principal'].push(Math.round(annuity - interestIncome));
+	chartRow['interest'].push(Math.round(interestIncome));
+	chartRow['totalTnterest'].push(Math.round(totalInterestIncome));
+	chartRow['balance'].push(Math.round(amount));
 
-			chartLabels.push(i);
-			dataRow['payment'].push(Math.round(annuity));
-			dataRow['principal'].push(Math.round(annuity - interestIncome));
-			dataRow['interest'].push(Math.round(interestIncome));
-			dataRow['totalTnterest'].push(Math.round(totalInterestIncome));
-			dataRow['balance'].push(Math.round(amount));
-		}
-		dataRows = {
-			labels: chartLabels,
-			datasets: [
-				{...datasetTemplate, label: 'Interest', data: dataRow['interest'], borderColor: "rgba(56,142,60,1)", pointBorderColor: "rgba(27,94,32,1)"
-					,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(46,125,50,1)",backgroundColor: "rgba(200,230,201,0.4)"},
-				{...datasetTemplate, label: 'Total interest', data: dataRow['totalTnterest'], borderColor: "rgba(245,124,0,1)", pointBorderColor: "rgba(230,81,0,1)"
-					,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(239,108,0,1)",backgroundColor: "rgba(255,224,178,0.4)"},
-				{...datasetTemplate, label: 'Payment', data: dataRow['payment'], borderColor: "rgba(76,76,76,1)", pointBorderColor: "rgba(0,0,0,1)"
-					,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(33,33,33,1)",backgroundColor: "rgba(245,245,245,0.4)"},
-				{...datasetTemplate, label: 'Principal', data: dataRow['principal'], borderColor: "rgba(123,31,162,1)", pointBorderColor: "rgba(74,20,140,1)"
-					,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(106,27,154,1)",backgroundColor: "rgba(255,190,231,0.4)"},
-			]
-		}
-		return dataRows;
-	}
- }
+	tableRows.push(tableRow);
+};
+tableData.rows = tableRows;
+dataLine = {
+	labels: chartLabels,
+	datasets: [
+		{...datasetTemplate, label: 'Interest', data: chartRow['interest'], borderColor: "rgba(56,142,60,1)", pointBorderColor: "rgba(27,94,32,1)"
+			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(46,125,50,1)",backgroundColor: "rgba(200,230,201,0.4)"},
+		{...datasetTemplate, label: 'Total interest', data: chartRow['totalTnterest'], borderColor: "rgba(245,124,0,1)", pointBorderColor: "rgba(230,81,0,1)"
+			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(239,108,0,1)",backgroundColor: "rgba(255,224,178,0.4)"},
+		{...datasetTemplate, label: 'Payment', data: chartRow['payment'], borderColor: "rgba(76,76,76,1)", pointBorderColor: "rgba(0,0,0,1)"
+			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(33,33,33,1)",backgroundColor: "rgba(245,245,245,0.4)"},
+		{...datasetTemplate, label: 'Principal', data: chartRow['principal'], borderColor: "rgba(123,31,162,1)", pointBorderColor: "rgba(74,20,140,1)"
+			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(106,27,154,1)",backgroundColor: "rgba(255,190,231,0.4)"},
+	]
+};
+
+
+return {tableData, dataLine, annuity, totalInterestIncome };
 
 };

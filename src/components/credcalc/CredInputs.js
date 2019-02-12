@@ -13,10 +13,10 @@ export default function ReactoSettings({ inputs, handleChange, handleRateChange,
 			<MySlider className="reactoSlider" name='period' label='Period' valType="period" value={inputs['period']} min={3} max={60} step={1}  handleChange={handleChange}  />
 			<MDBContainer className="pt-1 mx-0" fluid>
 		      	<MDBRow className="px-0 mx-0 mb-5"> 
-		      		<MDBCol className="text-left px-0 mx-0" lg="3">
-		      			Rate
+		      		<MDBCol className="text-left px-0 mx-0" lg="4">
+		      			Rate, %
 		      		</MDBCol>
-		      		<MDBCol className="text-left px-0 mx-0" lg="6">
+		      		<MDBCol className="text-left px-0 mx-0" lg="5">
 		      		</MDBCol>
 		      		<MDBCol className="jusify-content-end text-right px-0 mx-0" lg="3">
 						<FormControl

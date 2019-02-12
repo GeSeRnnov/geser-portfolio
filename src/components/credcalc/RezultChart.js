@@ -12,11 +12,11 @@ state = {
 
 render() {
     return (
-      <MDBContainer >
-        <h5 className="mt-0">Amortization Schedule</h5>
+      <MDBContainer className='mb-5 pb-5'>
+        <h5 className="mt-5">Amortization Schedule</h5>
         <Line data={this.state.dataLine} 
         	options={{ responsive: true }} 
-        	height="60vh"
+        	height="90vh"
     	/>
       </MDBContainer>
     );

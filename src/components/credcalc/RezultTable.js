@@ -4,7 +4,6 @@ import { MDBDataTable } from 'mdbreact';
 export default function RezultTable({ data }) {
 	return(
 		<MDBDataTable
-			scrollY
 			maxHeight="30vh"
 			striped
 			bordered
@@ -15,3 +14,6 @@ export default function RezultTable({ data }) {
 		/>
 	);
 };
+			
+			// scrollY
+

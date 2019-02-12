@@ -2,10 +2,14 @@ import React from 'react';
 import CredInputs from './credcalc/CredInputs';
 import RezultTable from './credcalc/RezultTable';
 import RezultChart from './credcalc/RezultChart';
-import { MDBContainer, MDBRow, MDBCol,  MDBScrollspyBox, MDBTabContent  } from "mdbreact";
-import getData from './credcalc/ProcessData'
+import { MDBContainer, MDBRow, MDBCol,  MDBScrollspyBox  } from "mdbreact";
+import getData from './credcalc/ProcessData';
+import numeral from 'numeral';
+
 
 // http://jerairrest.github.io/react-chartjs-2/
+// https://www.bankrate.com/calculators/mortgages/loan-calculator.aspx
+// http://www.sffinance.us/personal-loan.php
 
 Element.prototype.getElementById = function(id) {
     return document.getElementById(id);
@@ -18,14 +22,16 @@ class Reactogram extends React.Component{
 
 		this.state = {
 			inputs: {
-				creditsum: 500000,
-				period: 18,
-				defaultRate: 8,
-				rate: 8
+				creditsum: 50000,
+				period: 36,
+				defaultRate: 4.5,
+				rate: 4.5
 			},
 			calculated: false,
 			tableData: {},
-			dataLine: {}
+			dataLine: {},
+			totalInterestIncome: 0,
+			annuity: 0
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -34,8 +40,14 @@ class Reactogram extends React.Component{
 
 
 	handleCalculate = () => {
-		this.setState({ tableData: getData(this.state.inputs, 'table') })
-		this.setState({ dataLine: getData(this.state.inputs, 'chart') })
+		let calcData = getData(this.state.inputs);
+		this.setState({ 
+			tableData: calcData.tableData,
+			dataLine: calcData.dataLine,
+			annuity: calcData.annuity,
+			totalInterestIncome: calcData.totalInterestIncome
+		});
+		// this.setState({ dataLine: calcData.dataLine });
 		this.setState({ calculated: true });
 	}
 
@@ -62,17 +74,44 @@ class Reactogram extends React.Component{
 					<MDBCol className="" lg="2">
 						<CredInputs inputs={this.state.inputs} handleChange={this.handleChange} handleCalculate={this.handleCalculate} handleRateChange={this.handleRateChange} />
 					</MDBCol>
-					<MDBCol className="p-0 m-0" lg="10" className="" style={{background: 'white', minHeight: '70vh'}} >
+					<MDBCol className="p-0 m-0" lg="10"  style={{background: '', minHeight: '70vh', height: '70vh', overflow: 'scroll'  }} >
 						<div>
 							{
 								this.state.calculated ? 
 									<div>
-											<RezultChart chartData={this.state.dataLine} /> 
-											<RezultTable data={this.state.tableData} /> 
+										<MDBRow>
+											<MDBCol className="credCalcRezultLabels" lg="3">
+												Monthly payments: 
+											</MDBCol>
+											<MDBCol className="text-left credCalcRezultValues" lg="4">
+												{numeral(this.state.annuity).format('$0,0.00')}
+											</MDBCol>
+										</MDBRow>
+										<MDBRow>
+											<MDBCol className="credCalcRezultLabels" lg="3">
+												Total principal paid: 
+											</MDBCol>
+											<MDBCol className="text-left credCalcRezultValues" lg="4">
+												{numeral(this.state.inputs.creditsum).format('$0,0.00')}
+											</MDBCol>
+										</MDBRow>
+										<MDBRow>
+											<MDBCol className="credCalcRezultLabels" lg="3">
+												Total interest paid: 
+											</MDBCol>
+											<MDBCol className="text-left credCalcRezultValues" lg="4">
+												{numeral(this.state.totalInterestIncome).format('$0,0.00')}
+											</MDBCol>
+										</MDBRow>
+										<RezultChart chartData={this.state.dataLine} /> 
+										<RezultTable data={this.state.tableData} /> 
 									</div>
 									: 
 									<div>
-										<img src={"./img/PersonalLoanIner.jpg" } style={{height: '70vh'}} />
+										<img src={"./img/PersonalLoanIner.jpg" } alt="Loan calculator" style={{height: '70vh'}} className="credCalcImg" />
+										<div className="loanText">
+											Personal loans are an excellent option as payments and interest rates are predictable on personal loans, you have time to pay the loan back, making the repayment more realistic, interest rates are lower and no collateral is required on unsecured personal loans.
+										</div>
 									</div>
 							}
 						</div>
@@ -86,5 +125,3 @@ class Reactogram extends React.Component{
 
 
 export default Reactogram;
-
-

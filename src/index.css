@@ -130,8 +130,42 @@ line-height: 1.7;
   height: 0px;
 }
 
+
+.dt-bootstrap4 th{
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
 .dt-bootstrap4 td{
   font-size: 1.1em;
+  font-weight: 400;
+}
+
+.credCalcImg{
+  float: left;
+  padding-right: .5em;
+}
+
+.loanText{
+  text-indent: 1em;
+  font-size: 1.1em;
+  color: #555;
+  padding-top: 3em;
+  line-height: 2.5em;
+}
+
+.credCalcRezultLabels{
+  font-size: 1.5em;
+  font-weight: 500;
+  padding-left: 1em;
+  line-height: 2em;
+
+}
+
+.credCalcRezultValues{
+  font-size: 2em;
+  font-weight: 600;
+  line-height: 2em;
 }
 
 /*--------------------              Examples              --------------------*/
