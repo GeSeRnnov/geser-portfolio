@@ -10,7 +10,7 @@ export default function ReactoSettings({ inputs, handleChange, handleRateChange,
 	return(
 		<aside className="reactoSettings">
 			<MySlider className="reactoSlider" name="creditsum" label='Amount' value={inputs['creditsum']} min={30000} max={5000000} step={50000}  handleChange={handleChange}  />
-			<MySlider className="reactoSlider" name='period' label='Period' valType="period" value={inputs['period']} min={3} max={60} step={1}  handleChange={handleChange}  />
+			<MySlider className="reactoSlider" name='period' label='Period' valType="period" value={inputs['period']} min={3} max={180} step={1}  handleChange={handleChange}  />
 			<MDBContainer className="pt-1 mx-0" fluid>
 		      	<MDBRow className="px-0 mx-0 mb-5"> 
 		      		<MDBCol className="text-left px-0 mx-0" lg="4">
