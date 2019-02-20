@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Square from './Square';
 import { moveUnit, canMoveUnit } from './Observe';
 import { ItemTypes } from './Constants';
@@ -6,22 +6,24 @@ import { DropTarget } from 'react-dnd';
 
 import Unstated from './Unstated';
 import { Provider, Subscribe, Container } from 'unstated';
+import { connect as reduxConnect } from 'react-redux';
+import { movePosition } from './redux/reducers/actions';
 
 
 // let newPosition = [];
 
 
-const squareTarget = {
-  canDrop(props) {
-    return canMoveUnit(props.x, props.y);
-  },
+// const squareTarget = {
+//   canDrop(props) {
+//     return canMoveUnit(props.x, props.y);
+//   },
 
-  drop(props) {
-    moveUnit(props.x, props.y);
-    // console.log(props.x, props.y);
-    // newPosition = [props.x, props.y];
-  }
-};
+//   drop(props) {
+//     moveUnit(props.x, props.y);
+//     console.log('can drop to ', props.x, props.y, props);
+//     // newPosition = [props.x, props.y];
+//   }
+// };
 
 
 // function setNewPosition(newPosition){
@@ -43,11 +45,7 @@ function collect(connect, monitor) {
   };
 }
 
-
-function BoardSquare({ x, y, connectDropTarget, isOver, canDrop, children }) {
-  const black = (x + y) % 2 === 1;
-
-  function renderOverlay(color) {
+function  renderOverlay(color){
     return (
       <div style={{
         position: 'absolute',
@@ -62,25 +60,58 @@ function BoardSquare({ x, y, connectDropTarget, isOver, canDrop, children }) {
     );
   }
 
-  return connectDropTarget(
+// let { x, y, connectDropTarget, isOver, canDrop, children } = this.props
+// const black = (x + y) % 2 === 1;
+class  BoardSquare extends Component{
+// function BoardSquare({ x, y, connectDropTarget, isOver, canDrop, children }) {
+  constructor(props){
+    super(props);
+    // state = {}
+    // console.log('boardSquareProps ');
+  }
+
+
+
+  isBlack(x,y){
+    return (x + y) % 2 === 1;
+  }
+
+  render(){
+  return this.props.connectDropTarget(
     <div style={{
       position: 'relative',
       width: '100%',
       height: '100%'
     }}>
-      <Square black={black}>
-        {children}
+      <Square black={this.isBlack(this.props.x,this.props.y)}>
+        {this.props.children}
       </Square>
-      {isOver && !canDrop && renderOverlay('red')}
-      {!isOver && canDrop && renderOverlay('yellow')}
-      {isOver && canDrop && renderOverlay('green')}
+      {this.props.isOver && !this.props.canDrop && renderOverlay('red')}
+      {!this.props.isOver && this.props.canDrop && renderOverlay('yellow')}
+      {this.props.isOver && this.props.canDrop && renderOverlay('green')}
     </div>
   );
 }
+}
 
 
-export default DropTarget(ItemTypes.HORSE, squareTarget, collect)(BoardSquare);
+export default reduxConnect(null, {movePosition})(DropTarget(ItemTypes.HORSE, 
+    // squareTarget
+    { canDrop(props) {
+        return canMoveUnit(props.x, props.y);
+      },
 
+      drop(props,monitor) {
+        moveUnit(props.x, props.y);
+        // console.log('can drop to ', props.x, props.y, props);
+        // newPosition = [props.x, props.y];
+        props.movePosition([props.x, props.y]);
+      }
+    }
+
+    , collect)(BoardSquare));
+// export default DropTarget(ItemTypes.HORSE, squareTarget, collect)(BoardSquare);
+// export default connect(null, movePosition)(BoardSquare)
 
 
 

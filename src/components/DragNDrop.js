@@ -2,8 +2,15 @@ import * as React from 'react';
 // import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import Board from './dragndrop/Board';
 import { observe } from './dragndrop/Observe';
-import Unstated from './dragndrop/Unstated';
-import { Provider, Subscribe, Container } from 'unstated';
+import { Provider } from 'react-redux';
+import store from './dragndrop/redux/store';
+import { DragDropContextProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
+
+// import Unstated from './dragndrop/Unstated';
+// import { Provider, Subscribe, Container } from 'unstated';
+
 
 // http://react-dnd.github.io/react-dnd/docs/tutorial
 // https://www.spriters-resource.com/pc_computer/heroes3/
@@ -11,29 +18,21 @@ import { Provider, Subscribe, Container } from 'unstated';
 
 function Dragndrop(){
 		return (
-			<Subscribe to={ [Unstated] } >
-				{ (stated) => (<div
-					style={{
-						width: "100%",
-						height: "70vh",
-						border: '1px solid gray',
-					}}
-				>
-					<Board unitPosition={stated.state.unitPosition}  />
-				</div>)}
-			</Subscribe>
-		);
+			<div
+				style={{
+					width: "100%",
+					height: "70vh",
+					border: '1px solid gray',
+				}}
+			>
+					<Board   />
+			</div>
+			);
 	}
 
 class DragNDrop extends React.Component{
-	// public state: ChessboardTutorialAppState = { knightPosition: [1, 7] }
-	state = { 
-		unitPosition: [1,7]
-	}
 	
 	
-
-
 
 	handleChange = (unitPosition) => {
 		const nextState = { unitPosition }
@@ -48,9 +47,11 @@ class DragNDrop extends React.Component{
 	
 	render() {
 		return(
-		<Provider>
+			<DragDropContextProvider backend={HTML5Backend}>
+		<Provider store={store}>
 			<Dragndrop />
 		</Provider>
+			</DragDropContextProvider>
 		);
 	}
 
@@ -63,6 +64,7 @@ export default DragNDrop;
 
 
 // 
+					// <Board unitPosition={[1, 7]}  />
 // render() {
 // 		return (
 // 			<Subscribe to={ [Unstated] } >
@@ -136,3 +138,14 @@ export default DragNDrop;
 // }
 
 
+// <Subscribe to={ [Unstated] } >
+// 				{ (stated) => (<div
+// 					style={{
+// 						width: "100%",
+// 						height: "70vh",
+// 						border: '1px solid gray',
+// 					}}
+// 				>
+// 					<Board unitPosition={stated.state.unitPosition}  />
+// 				</div>)}
+// 			</Subscribe>

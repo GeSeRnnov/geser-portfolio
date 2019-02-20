@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Unstated from './Unstated';
-import { Provider, Subscribe, Container } from 'unstated';
+// import Unstated from './Unstated';
+// import { Provider, Subscribe, Container } from 'unstated';
 
 
 let unitPosition = [1, 7];
@@ -11,13 +11,6 @@ let observers: PositionObserver[] = [];
 function emitChange() {
   // observer(unitPosition);
   observers.forEach(o => o && o(unitPosition));
-  return (
-		<Subscribe to = {[Unstated]} >
-			{(stated) => (
-				stated.handleSetState({ unitPosition })
-			)}
-		</Subscribe>
-	);
 }
 
 export function observe(o: PositionObserver) {
@@ -51,6 +44,7 @@ export function canMoveUnit(toX, toY) {
   return (Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
          (Math.abs(dx) === 1 && Math.abs(dy) === 2);
 }
+
 
 
 
