@@ -14,7 +14,7 @@ import { movePosition } from './redux/reducers/actions';
 function handleSquareClick(toX, toY) {
   if (canMoveUnit(toX, toY)) {
     moveUnit(toX, toY);
-  	console.log('handleSquareClick',[toX, toY]);
+  	// console.log('handleSquareClick',[toX, toY]);
     // movePosition([toX, toY]);
   }
 }
@@ -83,10 +83,7 @@ class Board extends Component {
 			squares.push(renderSquare(i, this.props.unitPosition.position));
 		}
 		return(
-					<div>
-						<div>
-							{this.props.unitPosition.position[0]}, {this.props.unitPosition.position[1]}
-						</div>
+			<div>
 				<div
 					style={{
 						width: '100%',
@@ -98,7 +95,7 @@ class Board extends Component {
 					
 					{squares}
 				</div>
-					</div>
+			</div>
 		);
 }};
 
