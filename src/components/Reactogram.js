@@ -11,7 +11,7 @@ Element.prototype.getElementById = function(id) {
     return document.getElementById(id);
 }
 
-const styleMine = {minHeight: '70vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' };
+const styleMine = {minHeight: '80vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' };
 
 
 class Reactogram extends React.Component{

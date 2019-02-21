@@ -39,13 +39,12 @@ function Unit({ connectDragSource, isDragging }) {
 				image={'./img/pixie.png'}
 				widthFrame={80}
 				heightFrame={100}
-				backgroundPosition = {'right 0'}
 				steps={10}
 				fps={5}
 				loop={true}
 				direction={`forward`}
 	        	timeout={1000} 
-	        	style={{width: '80%',zIndex: '100' }}
+	        	style={{width: '90%',zIndex: '100' }}
 			/>
 		</div>
 	);

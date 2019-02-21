@@ -17,6 +17,7 @@ import Intro from './Intro';
 import Reactogram from './Reactogram';
 import CredCalc from './CredCalc';
 import DragNDrop from './DragNDrop';
+import Probe from './dragndrop/probe';
 
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
@@ -27,7 +28,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 function TabContainer(props) {
 	return (
-		<Typography component="div" style={{ padding: 8 * 3 }}>
+		<Typography component="div" style={{ padding: 1 * 1 }}>
 			{props.children}
 		</Typography>
 	);
@@ -127,15 +128,13 @@ function ExamplesTab() {
     							<Tab label="Examples" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
                   <Tab label="reactogram" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
                   <Tab label="cred. calc." classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
-    							<Tab label="DragNDrop" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
-    							
+                  <Tab label="DragNDrop" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
     						</Tabs>
     					</MuiThemeProvider>
     					{value === 0 && <TabContainer ><Intro /></TabContainer>}
               {value === 1 && <TabContainer className={classes.typography}><Reactogram /></TabContainer>}
               {value === 2 && <TabContainer className={classes.typography}><CredCalc /></TabContainer>}
-    					{value === 3 && <TabContainer className={classes.typography}><DragNDrop /></TabContainer>}
-    					
+              {value === 3 && <TabContainer className={classes.typography} ><DragNDrop /></TabContainer>}
     				</div>
 		    	</MDBCol>
 	    	</MDBRow>

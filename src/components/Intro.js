@@ -7,7 +7,7 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 export default function Intro() {
 	return(
 		<div>
-			<MDBContainer className="text-left py-5" style={{minHeight: '70vh'}} >
+			<MDBContainer className="text-left py-5" style={{minHeight: '80vh'}} >
 				<MDBRow>
 					<MDBCol md="12">
 						<div className="tabIntroText">

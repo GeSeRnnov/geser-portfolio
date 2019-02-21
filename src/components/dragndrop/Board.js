@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Horse from './Horse';
+import Unit from './Unit';
 import Square from './Square';
 import BoardSquare from './BoardSquare';
 import { canMoveUnit, moveUnit } from './Observe';
@@ -22,7 +22,7 @@ function handleSquareClick(toX, toY) {
 
 function renderPiece(x, y, [unitX, unitY]) {
 	if (x === unitX && y === unitY) {
-		return <Horse />;
+		return <Unit />;
 	}
 }
 
@@ -87,7 +87,7 @@ class Board extends Component {
 				<div
 					style={{
 						width: '100%',
-						height: '70vh',
+						height: '79.8vh',
 						display: 'flex',
 						flexWrap: 'wrap',
 					}}

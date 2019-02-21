@@ -88,7 +88,7 @@ class Reactogram extends React.Component{
 
 	render(){
 		return(
-			<MDBContainer className="mx-0 mt-0" style={{minHeight: '70vh'}} fluid>
+			<MDBContainer className="mx-0 mt-0" style={{minHeight: '80vh'}} fluid>
 				<MDBRow>
 					<MDBCol className="" lg="2">
 						<CredInputs inputs={this.state.inputs} handleChange={this.handleChange} handleCalculate={this.handleCalculate} handleReset={this.handleReset} handleRateChange={this.handleRateChange} />

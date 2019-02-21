@@ -21,14 +21,18 @@ function Dragndrop(){
 			<div
 				style={{
 					width: "100%",
-					height: "70vh",
+					height: "80vh",
+					width: "70vh",
 					border: '1px solid gray',
+					backgroundImage: './img/DragNDropBg.png'
 				}}
 			>
 					<Board   />
 			</div>
 			);
 	}
+
+	// 
 
 class DragNDrop extends React.Component{
 	
@@ -48,9 +52,9 @@ class DragNDrop extends React.Component{
 	render() {
 		return(
 			<DragDropContextProvider backend={HTML5Backend}>
-		<Provider store={store}>
-			<Dragndrop />
-		</Provider>
+				<Provider store={store}>
+					<Dragndrop />
+				</Provider>
 			</DragDropContextProvider>
 		);
 	}
