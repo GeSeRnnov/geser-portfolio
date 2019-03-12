@@ -2,7 +2,7 @@
 import numeral from 'numeral';
 import moment from 'moment';
 
-export default function getData( inputs, type ) {
+export default function ProcessData( inputs, type ) {
 
 let tableData = {
 	columns:[
@@ -79,7 +79,7 @@ let tableRows = [];
 let tableRow = {};
 let dataLine = [];
 let chartRow = {};
-let dates = [];
+// let dates = [];
 const nowDate = Date.now();
 
 chartRow['payment'] = [];

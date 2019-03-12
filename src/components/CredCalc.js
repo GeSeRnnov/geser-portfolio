@@ -1,15 +1,12 @@
 import React from 'react';
 import CredInputs from './credcalc/CredInputs';
-import RezultTable from './credcalc/RezultTable';
-import RezultChart from './credcalc/RezultChart';
-import { MDBContainer, MDBRow, MDBCol,  MDBScrollspyBox  } from "mdbreact";
-import getData from './credcalc/ProcessData';
+import ResultTable from './credcalc/RezultTable';
+import ResultChart from './credcalc/RezultChart';
+import { MDBContainer, MDBRow, MDBCol  } from "mdbreact";
+import ProcessData from './credcalc/ProcessData';
 import numeral from 'numeral';
 
 
-// http://jerairrest.github.io/react-chartjs-2/
-// https://www.bankrate.com/calculators/mortgages/loan-calculator.aspx
-// http://www.sffinance.us/personal-loan.php
 
 Element.prototype.getElementById = function(id) {
     return document.getElementById(id);
@@ -56,15 +53,13 @@ class Reactogram extends React.Component{
 	}
 
 	handleCalculate = () => {
-		this.setState({ calculated: false });
-		let calcData = getData(this.state.inputs);
+		let calcData = ProcessData(this.state.inputs);
 		this.setState({ 
 			tableData: calcData.tableData,
 			dataLine: calcData.dataLine,
 			annuity: calcData.annuity,
 			totalInterestIncome: calcData.totalInterestIncome
 		});
-		// console.log(this.state.dataLine);
 		this.setState({ calculated: true });
 	}
 
@@ -122,8 +117,8 @@ class Reactogram extends React.Component{
 												{numeral(this.state.totalInterestIncome).format('$0,0.00')}
 											</MDBCol>
 										</MDBRow>
-										<RezultChart chartData={this.state.dataLine} /> 
-										<RezultTable data={this.state.tableData} /> 
+										<ResultChart chartData={this.state.dataLine} /> 
+										<ResultTable data={this.state.tableData} /> 
 									</div>
 									: 
 									<div>
@@ -144,3 +139,33 @@ class Reactogram extends React.Component{
 
 
 export default Reactogram;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// http://jerairrest.github.io/react-chartjs-2/
+// https://www.bankrate.com/calculators/mortgages/loan-calculator.aspx
+// http://www.sffinance.us/personal-loan.php
+
+
+

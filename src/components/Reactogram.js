@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import Image from './reactogram/Image';
 import FilterImage from './reactogram/FilterImage';
 import FilterList from './reactogram/FilterList';
@@ -12,7 +11,6 @@ Element.prototype.getElementById = function(id) {
 }
 
 const styleMine = {minHeight: '80vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' };
-
 
 class Reactogram extends React.Component{
 	constructor(props){
@@ -37,8 +35,6 @@ class Reactogram extends React.Component{
 	}
 
 	handleFilterUpdate = (FName, FSettings) => {
-		// console.log('FName', FName);
-		// console.log('FSettings',FSettings);
 		this.setState({
 			selectedFilter: FName,
 			settings: FSettings,
@@ -62,7 +58,8 @@ class Reactogram extends React.Component{
 		let settingValue = parseInt(vl) ;
 		const settings = {...this.state.settings, [setting]: Number(settingValue)};
 		this.setState({
-			selectedFilter: '', settings
+			selectedFilter: '', 
+			settings
 		});
 	}
 
@@ -89,28 +86,3 @@ class Reactogram extends React.Component{
 
 
 export default Reactogram;
-
-
-// 
-// settingValue = ePrnt == undefined ? settingValue : this.state.settings[settingName];
-		// console.log('target ', ePrnt);
-		// console.log('parentNode ', e.target.parentNode);
-		// console.log('getElementById-needref ', ePrnt.getElementById('id_brightness'));
-		// console.log('settingName ', settingName);
-		// console.log('settingValue ', settingValue, vl);
-		// console.log('name ', ref);
-		// console.log('value ', this.state.settings.brightness);
-		// const settings = {...this.state.settings, ['brightness']: Number(e.target.value)};
-		// const settings = {...this.state.settings, [settingName]: Number(e.target.value)};
-		
-
-		// handleChange = range => {
-	// 	// console.log('name ', range.name);
-	// 	// console.log('value ', range);
-	// 	const settings = {...this.state.settings, [range.name]: range.value}
-	// 	if (this.state.settings.brightness !== range.value){
-	// 		this.setState({
-	// 			selectedFilter: '', settings
-	// 		});
-	// 	}
-	// }

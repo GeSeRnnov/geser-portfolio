@@ -1,29 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { BrowserRouter as Router } from "react-router-dom";
-// import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-// import { MDBContainer, MDBRow, MDBCol, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBIcon } from "mdbreact";
-// import { MDBScrollspyBox, MDBScrollspyList, MDBScrollspyListItem, MDBScrollspyText, MDBTabContent } from "mdbreact";
-// import { withStyles } from '@material-ui/styles';
 import { makeStyles } from '@material-ui/styles';
-// import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
-// import { Tabs, Tab, Container, Row, Col } from 'react-bootstrap';
-// import {Container, Row, Col } from 'react-bootstrap';
 import Intro from './Intro';
 import Reactogram from './Reactogram';
 import CredCalc from './CredCalc';
 import DragNDrop from './DragNDrop';
-import Probe from './dragndrop/probe';
-
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-// import purple from '@material-ui/core/colors/purple';
-
 
 
 function TabContainer(props) {

@@ -1,8 +1,5 @@
 import * as React from 'react'
 
-// export interface OverlayProps {
-// 	color: string
-// }
 
 const Overlay = ({ color }) => {
 	return (

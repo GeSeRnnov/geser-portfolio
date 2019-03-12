@@ -3,9 +3,6 @@ import Square from './Square';
 import { moveUnit, canMoveUnit } from './Observe';
 import { ItemTypes } from './Constants';
 import { DropTarget } from 'react-dnd';
-
-import Unstated from './Unstated';
-import { Provider, Subscribe, Container } from 'unstated';
 import { connect as reduxConnect } from 'react-redux';
 import { movePosition } from './redux/reducers/actions';
 
@@ -34,9 +31,6 @@ function  renderOverlay(color){
   }
 
 class  BoardSquare extends Component{
-  constructor(props){
-    super(props);
-  }
 
   isBlack(x,y){
     return (x + y) % 2 === 1;

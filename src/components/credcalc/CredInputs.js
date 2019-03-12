@@ -1,12 +1,10 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import MySlider from './Slider'
 import { MDBBtn, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { FormControl} from 'react-bootstrap';
 
 
-export default function ReactoSettings({ inputs, handleChange, handleRateChange, handleCalculate, handleReset }) {
-	// const {settings} = {props}
+export default function CredInputs({ inputs, handleChange, handleRateChange, handleCalculate, handleReset }) {
 	return(
 		<aside className="reactoSettings">
 			<MySlider className="reactoSlider" name="creditsum" label='Amount' value={inputs['creditsum']} min={30000} max={5000000} step={50000}  handleChange={handleChange}  />

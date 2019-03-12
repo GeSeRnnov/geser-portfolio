@@ -1,7 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { MDBBtn } from "mdbreact";
-import { FormGroup, ControlLabel, FormControl, Form, Button, Col, Row, Grid } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Col, Row, Grid 
+	// Form, Button, 
+} from 'react-bootstrap';
 
 function FieldGroup({ id, label, ...props}) {
 	return(

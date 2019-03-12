@@ -20,7 +20,7 @@ export default function Intro() {
 							</p>
 							<p>
 								In web building I'm developing not only front-end part. 
-								Server side, also is developing by using PHP or NodeJS. But particularly this site is developed by using serverless technology.
+								Server side, also is developed by using PHP or NodeJS. But particularly this site is developed by using serverless technology.
 							</p>
 
 							<p>

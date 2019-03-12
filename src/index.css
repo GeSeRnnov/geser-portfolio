@@ -79,38 +79,6 @@ line-height: 1.7;
   opacity: .9;
 }
 
-.reactoSettings{
-/*  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  flex: 1;*/
-}
-
-.reactoContent{
-/*  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  -o-flex-direction: column;
-  flex-direction: column;
-  flex: 1;*/
-}
-
-.reactoSlider{
-  /*padding-bottom: 15px;*/
-}
-
-.reactoSettings{
-  /*width: 30%;*/
-}
-
-
 .tabIntroText{
   font-size: 1.5em;
   line-height: 1.5em;
@@ -168,9 +136,18 @@ line-height: 1.7;
   line-height: 2em;
 }
 
+.dragndropBoard{
+   height: 80vh; 
+   width: 70vh;
+   border: 1px solid gray;
+}
 /*--------------------              Examples              --------------------*/
 
-/*!!!!!!!!!!!!!!!!!!!!              Cards              !!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!              Resume & Cards              !!!!!!!!!!!!!!!!!!!!*/
+.resumeHeader{
+  text-shadow: 5px 5px 10px #666;
+}
+
 .cardKeys{
   font-weight: bold;
 }
@@ -178,7 +155,14 @@ line-height: 1.7;
 .cardVals{
   font-size: 1.1em;
 }
-/*--------------------              Cards              --------------------*/
+
+.cardsHeader{
+  border-bottom: 1px solid #999;
+  display: inline-block;
+  line-height: 0.9;
+  cursor: pointer;
+}
+/*--------------------              Resume & Cards              --------------------*/
 
 
 

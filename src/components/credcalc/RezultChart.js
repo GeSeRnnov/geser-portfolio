@@ -3,26 +3,24 @@ import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 
 
-class RezultChart extends React.Component {
-state = {
-	dataLine: this.props.chartData,
-}
+class ResultChart extends React.Component {
 
 
 render() {
+    console.log('dataLine', this.props.chartData);
     return (
       <MDBContainer className='mb-5 pb-5'>
         <h5 className="mt-5">Amortization Schedule</h5>
-        <Line data={this.state.dataLine} 
+        <Line data={this.props.chartData} 
         	options={{ responsive: true }} 
-        	height="90vh"
-    	/>
+        	height={"90vh"}
+        />
+      
       </MDBContainer>
     );
   }
 }
 
-export default RezultChart;
-
+export default ResultChart;
 
 

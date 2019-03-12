@@ -1,10 +1,5 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-// import Unstated from './Unstated';
-// import { Provider, Subscribe, Container } from 'unstated';
 
-
-let unitPosition = [1, 7];
+let unitPosition = [1, 3];
 let observers: PositionObserver[] = [];
 
 function emitChange() {
@@ -33,8 +28,7 @@ export function canMoveUnit(toX, toY) {
 
    return (Math.abs(dx) === 1 && Math.abs(dy) <= 1) ||
            (Math.abs(dx) <= 1 && Math.abs(dy) === 1);
-  // return (Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
-  //          (Math.abs(dx) === 1 && Math.abs(dy) === 2);
+
 }
 
 

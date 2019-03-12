@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { MDBRangeInput, MDBRow } from "mdbreact";
 import { withStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/lab/Slider';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
@@ -54,7 +52,6 @@ class MySlider extends React.Component {
 					  needref={this.props.name + '_ref'}
 			          aria-labelledby="label"
 			          onChange={(e, vl) => {
-			          	// console.log(this.props.name);
 			          	this.props.handleChange(e, vl, this.props.name);
 			          }}
 			          step={this.props.step}
@@ -69,65 +66,17 @@ class MySlider extends React.Component {
   }
 }
 
-Slider.propTypes = {
-  classes: PropTypes.object.isRequired,
+// 
+MySlider.propTypes = {
+  classes: PropTypes.object,
+  name: PropTypes.string,
+  value: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  step: PropTypes.number.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(MySlider);
 		
-
-// 
-        // <Typography id="label">{this.props.name}</Typography>
-        // <Typography id="label2">{this.props.value}</Typography>
-
-
-			// <MDBRow>
-			// 	<MDBRangeInput
-			// 		min={0}
-			// 		max={100}
-			// 		formClassName="w-25"
-
-			// 	/>
-			// </MDBRow>
-
-
-
- // <input 
-	//         	type={"range"}
-	//         	className={classes.rlrange}
-	//         	min={this.props.min}
-	//         	max={this.props.max}
-	//           	name={this.props.name}
-	//           	step={this.props.state}
-	//           	value={this.props.value}
-	//           	onChange={this.props.handleChange}
-
-	//         />
-// rlrange:{
-//   	width: 300,
-//   	position: 'absolute',
-//   	height: '35px',
-//   	zIndex: '5',
-//   	opacity: '0.5',
-//   	marginTop: '-8px',
-//   }
-
-// state = {
-//     value: this.props.value,
-//   };
-
-//   localHandleChange = (event, value) => {
-//     this.setState({ value });
-//     console.log('kolbasa');
-//     this.props.handleChange();
-//   };
-
-//   // componentWillMount(){
-
-//   // }
-// 	// const name = this.props.name;
-    // const { value } = this.state;
-    // let range = this.state;
-
-
 

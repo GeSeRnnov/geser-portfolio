@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 const Sprite = ({ filename, x, y, width, height }) => {
-  // console.log('Sprite ', filename, x, y, width, height );
   if (!filename) {
     return null;
   }
@@ -24,12 +23,5 @@ Sprite.defaultProps = {
   height: 0,
 };
 
-// Sprite.propTypes = {
-//   filename: PropTypes.string,
-//   x: PropTypes.number,
-//   y: PropTypes.number,
-//   width: PropTypes.number,
-//   height: PropTypes.number,
-// };
 
 export default Sprite;

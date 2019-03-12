@@ -1,11 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import MySlider from './Slider'
+import PropTypes from 'prop-types';
+import MySlider from './MySlider'
 import { MDBBtn } from "mdbreact";
 
 
-export default function ReactoSettings({ settings, handleChange, handleReset }) {
-	// const {settings} = {props}
+export default function ReactoSettings(props) {
+	const { settings, handleChange, handleReset } = {...props}
 	return(
 		<aside className="reactoSettings">
 			<MySlider className="reactoSlider" name='brightness' value={settings['brightness']} min={0} max={200} step={0.1}  handleChange={handleChange}  />
@@ -17,3 +17,15 @@ export default function ReactoSettings({ settings, handleChange, handleReset }) 
 		</aside>
 	);
 };
+
+ReactoSettings.propTypes = {
+	settings: PropTypes.shape({
+		brightness: PropTypes.number.isRequired,
+		contrast: PropTypes.number.isRequired,
+		saturate: PropTypes.number.isRequired,
+		hue: PropTypes.number.isRequired,
+		sepia: PropTypes.number.isRequired,
+	}),
+	handleChange: PropTypes.func.isRequired,
+	handleReset: PropTypes.func.isRequired,
+}

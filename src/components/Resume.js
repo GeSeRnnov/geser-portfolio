@@ -1,123 +1,86 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, {Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import ResumeCard from './ResumeFlipCard';
-// import Icon from '@material-ui/core/Icon';
+import ResumeCard from './ResumeCard';
+import { cardsContent } from './ResumeText.js'
 
+export default class Resume extends Component {
+	constructor(){
+		super();
 
-export default function Resume() {
-	
-	const contentPersonalData = [];
-	contentPersonalData["First name"] = "George";
-	contentPersonalData["Last Name"] = "Rukomin";
-	contentPersonalData["Gender"] = "male";
-	contentPersonalData["Age"] = "33";
-	contentPersonalData["Country"] = "Russian Federation";
-	contentPersonalData["City"] = "Nizhny Novgorod";
-	contentPersonalData["E-mail"] = "gesernnov@gmail.com";
+		this.state = {
+			stateContent:  [{
+					icon: '',
+					category: '',
+					cardHeader: '',
+					cardContent: [],
+				}]
+		}
+		
+		this.fetchData = this.fetchData.bind(this);
+	}
 
-	const contentObjective = [];
-	contentObjective["Front-end engineer"] = "-	React web-app developing;";
-	contentObjective["_hide2"] = "-	Maintaining existing projects;";
-	
-	const contentKeySkills = [];
-	contentKeySkills["Front-end"] = "- ReactJS";
-	contentKeySkills["_hide2"] = "- JavaScript";
-	contentKeySkills["_hide3"] = "- JQuery";
-	contentKeySkills["_hide4"] = "- CSS(SASS)";
-	contentKeySkills["_hide15"] = "_hide";
-	contentKeySkills["Back-end"] = "- Node.js";
-	contentKeySkills["_hide8"] = "- PHP";
-	contentKeySkills["_hide9"] = "- MySQL";
-	contentKeySkills["_hide16"] = "_hide";
-	contentKeySkills["Other"] = "- Github";
-	contentKeySkills["_hide11"] = "- MS SQL Server";
-	contentKeySkills["_hide12"] = "- MS SSAS";
-	contentKeySkills["_hide13"] = "- MS SSRS";
-	contentKeySkills["_hide14"] = "- MS SSIS";
+	// Fetching data from the server
+	fetchData = () => {
+		const getData = new Promise(resolve => {
+			resolve(cardsContent)
+		})
 
-	const contentEducation = [];
-	contentEducation["First education:"] = "_hide_underline";
-	contentEducation["University"] = "Lobachevsky University";
-	contentEducation["Site"] = "http://eng.unn.ru";
-	contentEducation["Faculty"] = "Radiophysical";
-	contentEducation["Graduation year"] = "2010";
-	contentEducation["_hide"] = "_hide";
-	contentEducation["Second education:"] = "_hide_underline";
-	contentEducation["University "] = "Lobachevsky University";
-	contentEducation["Site "] = "http://eng.unn.ru";
-	contentEducation["Faculty "] = "Finansial";
-	contentEducation["Graduation year "] = "2012";
-	
+		getData
+			.then( result => {
+				this.setState({ stateContent: result})
+				// setInterval(() => this.setState({ stateContent: result}), 1000)
+			})
+			.catch(error => {
+				console.log('The server error has occurred. Error: ', error);
+			})
+	}
 
-	const cardsContent = {
-		personalData: {
-			icon: 'account_box',
-			cardHeader: 'Personal details',
-			cardContent: contentPersonalData,
-		},
-		objective: {
-			icon: 'gps_fixed',
-			cardHeader: 'Objective',
-			cardContent: contentObjective,
-		},
-		keySkills: {
-			icon: 'thumb_up',
-			cardHeader: 'Key skills',
-			cardContent: contentKeySkills,
-		},
-		education: {
-			icon: 'assignment',
-			cardHeader: 'Education',
-			cardContent: contentEducation,
-		},
-	};
+	componentDidMount(){
+		this.fetchData();
+	}
 
+	render(){
 
-
-	return(
-		<MDBContainer  style={{}} fluid>
-			<MDBRow className="text-center py-5">
-				<MDBCol md="12">
-						<h1 className="display-2" style={{textShadow: '5px 5px 10px #666'}} >
+		return(
+			<MDBContainer  style={{}} fluid>
+				<MDBRow className="text-center py-5">
+					<MDBCol md="12">
+						<h1 className="resumeHeader display-2" >
 							Resume
 						</h1>						
-				</MDBCol>
-			</MDBRow>
-			<MDBRow className="text-left py-5 px-0 mx-0">
-				<MDBCol md="1">
-				</MDBCol>
-				<MDBCol md="4">
-					<ResumeCard content={cardsContent.personalData} />
-				</MDBCol>
-				<MDBCol md="1">
-				</MDBCol>
-				<MDBCol md="1">
-				</MDBCol>
-				<MDBCol md="4">
-					<ResumeCard content={cardsContent.objective}  />
-				</MDBCol>
-				<MDBCol md="1">
-				</MDBCol>
-			</MDBRow>
+					</MDBCol>
+				</MDBRow>
 
-			<MDBRow className="text-left py-5 px-0 mx-0">
-				<MDBCol md="1">
-				</MDBCol>
-				<MDBCol md="4">
-					<ResumeCard content={cardsContent.keySkills}  />
-				</MDBCol>
-				<MDBCol md="1">
-				</MDBCol>
-				<MDBCol md="1">
-				</MDBCol>
-				<MDBCol md="4">
-					<ResumeCard content={cardsContent.education}  />
-				</MDBCol>
-				<MDBCol md="1">
-				</MDBCol>
-			</MDBRow>
+				<MDBRow className="text-left py-2 px-0  mx-0">
+					<MDBCol md="1"></MDBCol>
+					<MDBCol md="4" className="text-left py-2  px-0  mx-0" >
+						<ResumeCard content={this.state.stateContent} category={'personalData'} />
+					</MDBCol>
+					<MDBCol md="1"></MDBCol>
+					<MDBCol md="1"></MDBCol>
+					<MDBCol md="4" className="text-left py-2 px-0  mx-0">
+						<ResumeCard content={this.state.stateContent} category={'objective'}  />
+					</MDBCol>
+					<MDBCol md="1"></MDBCol>
+				</MDBRow>
 
-		</MDBContainer>
-	);
+				
+				<MDBRow className="text-left py-5 px-0 mx-0">
+					<MDBCol md="1"></MDBCol>
+					<MDBCol md="4" className="text-left py-2 px-0  mx-0">
+						<ResumeCard content={this.state.stateContent} category={'keySkills'}  />
+					</MDBCol>
+					<MDBCol md="1"></MDBCol>
+					<MDBCol md="1"></MDBCol>
+					<MDBCol md="4" className="text-left py-2 px-0  mx-0">
+						<ResumeCard content={this.state.stateContent} category={'education'}  />
+					</MDBCol>
+					<MDBCol md="1"></MDBCol>
+				</MDBRow>
+				
+			</MDBContainer>
+		);
+}
 };
+
+

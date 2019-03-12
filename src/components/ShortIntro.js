@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-// import { BrowserRouter as Router } from "react-router-dom";
 import { MDBJumbotron, MDBRow, MDBCol, MDBContainer } from "mdbreact";
-// import logo from './logo.svg';
 
 class ShortIntro extends Component {
  
@@ -12,9 +9,7 @@ state = {
 };
 
 handleTogglerClick = () => {
-this.setState({
-  collapsed: !this.state.collapsed
-});
+  this.setState({ collapsed: !this.state.collapsed });
 };
 
 render() {
@@ -37,7 +32,6 @@ render() {
         </MDBRow>
       </MDBJumbotron>  
     </MDBContainer>
-
   );
 }} 
 

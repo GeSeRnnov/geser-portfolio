@@ -1,11 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Image from './Image';
 import FilterImage from './FilterImage';
 
+export default function FilterList(props) {
 
-
-export default function FilterList({ src, selectFilter }) {
+	const { src, selectFilter } = {...props}
 
 	const fListSettings = [
 		{	name: 'light',
@@ -47,41 +47,28 @@ export default function FilterList({ src, selectFilter }) {
 	];
 
 	const style = {minHeight: '17vh', backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' };
-	// const style = fStyleMine ? fStyle : {...fStyleMine};
-	// console.log('fStyleMine',fStyleMine);
 
 	return(
 		<div>
-			{
-				fListSettings.map( filter => 
-					<div 
-						key={filter.name}
-						 
-					>
-						<div>
-							<FilterImage 
-								settings={filter.settings}
-								fName={filter.name}
-								fSettings={filter.settings}
-								onClick={selectFilter} 
-							>
-								<Image src={src} fName={filter.name} fStyle={style} />
-							</FilterImage>
-						</div>
-					</div>
-				)
-			}	
+			{ fListSettings.map( filter => 
+				<div key={filter.name} >
+						<FilterImage 
+							settings={filter.settings}
+							fName={filter.name}
+							fSettings={filter.settings}
+							onClick={selectFilter} 
+						>
+							<Image src={src} fName={filter.name} fStyle={style} />
+						</FilterImage>
+				</div>
+			)}	
 		</div>
 	);
 };
 
 
-
-// 
-// 
-		// 	<div>
-		// 		kolbasa
-		// 	</div>
-		// // )});
-
+FilterList.propTypes = {
+	src: PropTypes.string,
+	selectedFilter: PropTypes.string
+}
 
