@@ -25,9 +25,10 @@ export default function CredInputs({ inputs, handleChange, handleRateChange, han
 							id = "ratevalue"
 							onChange={handleRateChange}
 							className="text-right"
-							style={{ width: '2em', height: '1.5em', padding: '0px', margin: '0px' }}
+							style={{  height: '1.5em', padding: '0px', margin: '0px' }}
 						/>	      			
 		      		</MDBCol>
+		      		{ inputs.rateError ? <div style={{fontSize: '.75em', width:'100%', textAlign: 'end', color: 'red'}} > {inputs.rateError}</div> : null }
 		      	</MDBRow>
 	    	</MDBContainer>
 	      

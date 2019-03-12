@@ -22,13 +22,15 @@ class Reactogram extends React.Component{
 				creditsum: 50000,
 				period: 36,
 				defaultRate: 4.5,
-				rate: 4.5
+				rate: 4.5,
+				rateError: '',
 			},
 			calculated: false,
 			tableData: {},
 			dataLine: {},
 			totalInterestIncome: 0,
-			annuity: 0
+			annuity: 0,
+			rate: 4.5
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -63,22 +65,44 @@ class Reactogram extends React.Component{
 		this.setState({ calculated: true });
 	}
 
+
 	handleChange = (e, vl, input) => {
-		let inputValue = parseInt(vl) ;
-		const inputs = {...this.state.inputs, [input]: Number(inputValue)};
-		this.setState({
-			inputs
-		});
+			let inputValue = parseInt(vl) ;
+			const inputs = {...this.state.inputs, [input]: Number(inputValue)};
+			this.setState({
+				inputs
+			});
 	}
 
 
 
 	handleRateChange = e => {
-		let inputValue = Number(e.target.value) ;
-		const inputs = {...this.state.inputs, ['rate']: inputValue};
-		this.setState({
-			inputs
-		});
+		const checked = this.checkRate(e.target.value)
+		
+		if(checked === true){
+			let inputValue = Number(e.target.value) ;
+
+			const inputs = {...this.state.inputs, rate: inputValue, rateError: '' };
+			this.setState({
+				inputs
+			});
+		} else {
+			const inputs = {...this.state.inputs, rateError: checked }
+			this.setState({
+				inputs
+			});
+		}
+	}
+
+	checkRate = (val) => {
+		switch(true){
+			case (Number(val) <= 0):
+				return 'The loan rate should be more than zero.';
+			case ((val*1).toString() !== val):
+				return 'The loan rate should be a number.';
+			default:
+				return true
+		}
 	}
 
 	render(){
@@ -86,7 +110,13 @@ class Reactogram extends React.Component{
 			<MDBContainer className="mx-0 mt-0" style={{minHeight: '80vh'}} fluid>
 				<MDBRow>
 					<MDBCol className="" lg="2">
-						<CredInputs inputs={this.state.inputs} handleChange={this.handleChange} handleCalculate={this.handleCalculate} handleReset={this.handleReset} handleRateChange={this.handleRateChange} />
+						<CredInputs 
+							inputs={this.state.inputs} 
+							handleChange={this.handleChange} 
+							handleCalculate={this.handleCalculate} 
+							handleReset={this.handleReset} 
+							handleRateChange={this.handleRateChange} 
+						/>
 					</MDBCol>
 					<MDBCol className="p-0 m-0" lg="10"  style={{background: '', minHeight: '70vh', height: '70vh', overflow: 'scroll'  }} >
 						<div>
