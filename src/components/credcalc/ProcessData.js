@@ -1,4 +1,4 @@
-// import React from 'react';
+import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import moment from 'moment';
 
@@ -79,7 +79,6 @@ let tableRows = [];
 let tableRow = {};
 let dataLine = [];
 let chartRow = {};
-// let dates = [];
 const nowDate = Date.now();
 
 chartRow['payment'] = [];
@@ -89,27 +88,32 @@ chartRow['totalTnterest'] = [];
 chartRow['balance'] = [];
 
 for ( let i = 1; i <= period; i++ ){
-	interestIncome = amount * rate;
-	totalInterestIncome += interestIncome;
-	amount -= annuity - interestIncome;
-	
-	tableRow = {
+	try{
+		interestIncome = amount * rate;
+		totalInterestIncome += interestIncome;
+		amount -= annuity - interestIncome;
+		
+		tableRow = {
 
-		month: moment(nowDate.clone).add(i-1, "month").format("MMM YYYY"),
-		payment: numeral(annuity).format('$0,0.00'),
-		principal: numeral(annuity - interestIncome).format('$0,0.00'),
-		interest: numeral(interestIncome).format('$0,0.00'),
-		totalTnterest: numeral(totalInterestIncome).format('$0,0.00'),
-		balance: numeral(amount.toFixed(2)).format('$0,0.00')
+			month: moment(nowDate.clone).add(i-1, "month").format("MMM YYYY"),
+			payment: numeral(annuity).format('$0,0.00'),
+			principal: numeral(annuity - interestIncome).format('$0,0.00'),
+			interest: numeral(interestIncome).format('$0,0.00'),
+			totalTnterest: numeral(totalInterestIncome).format('$0,0.00'),
+			balance: numeral(amount.toFixed(2)).format('$0,0.00')
+		}
+		chartLabels.push(moment(nowDate.clone).add(i-1, "month").format("MMM YYYY"));
+		chartRow['payment'].push(Math.round(annuity));
+		chartRow['principal'].push(Math.round(annuity - interestIncome));
+		chartRow['interest'].push(Math.round(interestIncome));
+		chartRow['totalTnterest'].push(Math.round(totalInterestIncome));
+		chartRow['balance'].push(Math.round(amount));
+
+		tableRows.push(tableRow);
+	} catch (e) {
+		alert('Something gone wrong...');
+		console.log(e);
 	}
-	chartLabels.push(moment(nowDate.clone).add(i-1, "month").format("MMM YYYY"));
-	chartRow['payment'].push(Math.round(annuity));
-	chartRow['principal'].push(Math.round(annuity - interestIncome));
-	chartRow['interest'].push(Math.round(interestIncome));
-	chartRow['totalTnterest'].push(Math.round(totalInterestIncome));
-	chartRow['balance'].push(Math.round(amount));
-
-	tableRows.push(tableRow);
 };
 tableData.rows = tableRows;
 dataLine = {
@@ -130,3 +134,14 @@ dataLine = {
 return {tableData, dataLine, annuity, totalInterestIncome };
 
 };
+
+
+ProcessData.propTypes = {
+	inputs: PropTypes.shape({
+		creditsum: PropTypes.number.isRequired,
+		period: PropTypes.number.isRequired,
+		defaultRate: PropTypes.number.isRequired,
+		rate: PropTypes.number.isRequired,
+		rateError: PropTypes.string,
+	})
+}

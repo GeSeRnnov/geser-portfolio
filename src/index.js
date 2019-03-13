@@ -11,9 +11,9 @@ const Portfolio = lazy(() => import('./App'));
 ReactDOM.render(
 	<Suspense 
 		fallback={
-			<div style={{display: 'flex', height: '100vh', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: '#f0fbfa'}} >
-				Loading......
-            	<img style={{ width: '16em', animation: 'App-logo-spin infinite 2s linear'}} src="./img/greenLoading.gif" alt={"Loader progress."} />
+			<div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f0fbfa'}} >
+				<h1><strong>Loading......</strong></h1>
+            	<img style={{ width: '16em'}} src="./img/greenLoading.gif" alt={"Loader progress."} />
 			</div>
 		}
 	>

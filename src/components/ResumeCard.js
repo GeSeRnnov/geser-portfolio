@@ -8,6 +8,7 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 
 function ResumeCard(props) {
+	
 	const content = props.content.filter(card => card.category === props.category )[0] ;
 	const [expanded, setExpanded] = React.useState(false);
 	
@@ -88,9 +89,7 @@ ResumeCard.propTypes = {
 		icon: PropTypes.string.isRequired,
 		category: PropTypes.string.isRequired,
 		cardHeader: PropTypes.string.isRequired,
-		cardContent: PropTypes.arrayOf(
-			PropTypes.string,
-		).isRequired,
+		cardContent: PropTypes.any,
 	})),
 }
 

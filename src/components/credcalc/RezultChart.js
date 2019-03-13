@@ -7,7 +7,6 @@ class ResultChart extends React.Component {
 
 
 render() {
-    console.log('dataLine', this.props.chartData);
     return (
       <MDBContainer className='mb-5 pb-5'>
         <h5 className="mt-5">Amortization Schedule</h5>

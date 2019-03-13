@@ -94,8 +94,8 @@ line-height: 1.7;
 }
 
 .bs-select ,.dataTables_info,.dataTables_paginate{
-  display: none;
-  height: 0px;
+  /*display: none;
+  height: 0px;*/
 }
 
 

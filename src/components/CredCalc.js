@@ -5,6 +5,7 @@ import ResultChart from './credcalc/RezultChart';
 import { MDBContainer, MDBRow, MDBCol  } from "mdbreact";
 import ProcessData from './credcalc/ProcessData';
 import numeral from 'numeral';
+import { debounce } from 'lodash';
 
 
 
@@ -36,6 +37,8 @@ class Reactogram extends React.Component{
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCalculate = this.handleCalculate.bind(this);
 		this.handleReset = this.handleReset.bind(this);
+		this.handleRateChange = this.handleRateChange.bind(this);
+		this.checkRate = this.checkRate.bind(this);
 	}
 
 	handleReset = () => {
@@ -60,48 +63,50 @@ class Reactogram extends React.Component{
 			tableData: calcData.tableData,
 			dataLine: calcData.dataLine,
 			annuity: calcData.annuity,
-			totalInterestIncome: calcData.totalInterestIncome
+			totalInterestIncome: calcData.totalInterestIncome,
+			calculated: true,
 		});
-		this.setState({ calculated: true });
 	}
-
 
 	handleChange = (e, vl, input) => {
-			let inputValue = parseInt(vl) ;
-			const inputs = {...this.state.inputs, [input]: Number(inputValue)};
-			this.setState({
-				inputs
-			});
+		let inputValue = parseInt(vl) ;
+		const inputs = {...this.state.inputs, [input]: Number(inputValue)};
+		this.setState({
+			inputs
+		});
 	}
 
+	handleRateChange = 
+	debounce(
+		val => {
+			const checked = this.checkRate(val);
 
+			if(checked === "Ok"){
+				let inputValue = Number(val) ;
 
-	handleRateChange = e => {
-		const checked = this.checkRate(e.target.value)
-		
-		if(checked === true){
-			let inputValue = Number(e.target.value) ;
-
-			const inputs = {...this.state.inputs, rate: inputValue, rateError: '' };
-			this.setState({
-				inputs
-			});
-		} else {
-			const inputs = {...this.state.inputs, rateError: checked }
-			this.setState({
-				inputs
-			});
+				const inputs = {...this.state.inputs, rate: inputValue, rateError: '' };
+				this.setState({
+					inputs
+				});
+			} else {
+				const inputs = {...this.state.inputs, rateError: checked }
+				this.setState({
+					inputs
+				});
+			}
 		}
-	}
+	, 100);
 
 	checkRate = (val) => {
 		switch(true){
+			case (Number(val) > 0):
+				return 'Ok';				
 			case (Number(val) <= 0):
 				return 'The loan rate should be more than zero.';
-			case ((val*1).toString() !== val):
+			case (val.slice(-1) !== '.' && (val * 1).toString() !== val):
 				return 'The loan rate should be a number.';
-			default:
-				return true
+			default: 
+				return 'Ok';
 		}
 	}
 
