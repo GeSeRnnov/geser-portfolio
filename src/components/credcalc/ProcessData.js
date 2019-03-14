@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import moment from 'moment';
 
-export default function ProcessData( inputs, type ) {
+export default function ProcessData( inputs, type = undefined ) {
 
+// Initialize variables, table and chart objects
 let tableData = {
 	columns:[
 		{
@@ -77,7 +78,6 @@ let totalInterestIncome = 0;
 
 let tableRows = [];
 let tableRow = {};
-let dataLine = [];
 let chartRow = {};
 const nowDate = Date.now();
 
@@ -87,6 +87,7 @@ chartRow['interest'] = [];
 chartRow['totalTnterest'] = [];
 chartRow['balance'] = [];
 
+// Filling data for all periods
 for ( let i = 1; i <= period; i++ ){
 	try{
 		interestIncome = amount * rate;
@@ -112,21 +113,22 @@ for ( let i = 1; i <= period; i++ ){
 		tableRows.push(tableRow);
 	} catch (e) {
 		alert('Something gone wrong...');
-		console.log(e);
+		console.log('Credit calculator error: ', e);
 	}
 };
+
 tableData.rows = tableRows;
-dataLine = {
+const dataLine = {
 	labels: chartLabels,
 	datasets: [
-		{...datasetTemplate, label: 'Interest', data: chartRow['interest'], borderColor: "rgba(56,142,60,1)", pointBorderColor: "rgba(27,94,32,1)"
-			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(46,125,50,1)",backgroundColor: "rgba(200,230,201,0.4)"},
-		{...datasetTemplate, label: 'Total interest', data: chartRow['totalTnterest'], borderColor: "rgba(245,124,0,1)", pointBorderColor: "rgba(230,81,0,1)"
-			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(239,108,0,1)",backgroundColor: "rgba(255,224,178,0.4)"},
-		{...datasetTemplate, label: 'Payment', data: chartRow['payment'], borderColor: "rgba(76,76,76,1)", pointBorderColor: "rgba(0,0,0,1)"
-			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(33,33,33,1)",backgroundColor: "rgba(245,245,245,0.4)"},
-		{...datasetTemplate, label: 'Principal', data: chartRow['principal'], borderColor: "rgba(123,31,162,1)", pointBorderColor: "rgba(74,20,140,1)"
-			,pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(106,27,154,1)",backgroundColor: "rgba(255,190,231,0.4)"},
+		{...datasetTemplate, label: 'Interest', data: chartRow['interest'], borderColor: "rgba(56,142,60,1)", pointBorderColor: "rgba(27,94,32,1)",
+			pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(46,125,50,1)",backgroundColor: "rgba(200,230,201,0.4)"},
+		{...datasetTemplate, label: 'Total interest', data: chartRow['totalTnterest'], borderColor: "rgba(245,124,0,1)", pointBorderColor: "rgba(230,81,0,1)",
+			pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(239,108,0,1)",backgroundColor: "rgba(255,224,178,0.4)"},
+		{...datasetTemplate, label: 'Payment', data: chartRow['payment'], borderColor: "rgba(76,76,76,1)", pointBorderColor: "rgba(0,0,0,1)",
+			pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(33,33,33,1)",backgroundColor: "rgba(245,245,245,0.4)"},
+		{...datasetTemplate, label: 'Principal', data: chartRow['principal'], borderColor: "rgba(123,31,162,1)", pointBorderColor: "rgba(74,20,140,1)",
+			pointHoverBackgroundColor: "rgba(255,255,255,1)", pointHoverBorderColor: "rgba(106,27,154,1)",backgroundColor: "rgba(255,190,231,0.4)"},
 	]
 };
 

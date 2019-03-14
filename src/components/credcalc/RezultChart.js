@@ -12,7 +12,7 @@ render() {
         <h5 className="mt-5">Amortization Schedule</h5>
         <Line data={this.props.chartData} 
         	options={{ responsive: true }} 
-        	height={"90vh"}
+        	height={"90"}
         />
       
       </MDBContainer>

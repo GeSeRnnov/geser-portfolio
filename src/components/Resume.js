@@ -21,7 +21,6 @@ export default class Resume extends Component {
 
 	// Fetching data from the server
 	fetchData = () => {
-		
 		axios.get('https://www.geser-portfolio.com/api/getSkills.php')
 			.then(res => {
 				this.setState({ stateContent: res.data})
@@ -30,6 +29,7 @@ export default class Resume extends Component {
 				console.log('Network error. Error: ', err);
 			})
 	}
+
 
 	componentDidMount(){
 		this.fetchData();
@@ -54,7 +54,7 @@ export default class Resume extends Component {
 					</MDBCol>
 					<MDBCol md="1"></MDBCol>
 					<MDBCol md="1"></MDBCol>
-<MDBCol md="4" className="text-left py-2 px-0  mx-0">
+					<MDBCol md="4" className="text-left py-2 px-0  mx-0">
 						<ResumeCard content={this.state.stateContent} category={'objective'}  />
 					</MDBCol>
 					<MDBCol md="1"></MDBCol>

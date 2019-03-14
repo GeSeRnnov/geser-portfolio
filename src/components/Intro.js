@@ -15,12 +15,8 @@ export default function Intro() {
 								At these tabs you can see some examples of my works.
 							</div>
 							<p>
-								I'm a beginner front-end developer and I'm learning all the time, and my skills are constantly growing.
-								So, my speed and quality of development is growing too. 
-							</p>
-							<p>
 								In web building I'm developing not only front-end part. 
-								Server side, also is developed by using PHP or NodeJS. But particularly this site is developed by using serverless technology.
+								Server side, is also developed by using PHP or NodeJS.
 							</p>
 
 							<p>

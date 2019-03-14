@@ -7,14 +7,12 @@ import ProcessData from './credcalc/ProcessData';
 import numeral from 'numeral';
 import { debounce } from 'lodash';
 
-
-
 Element.prototype.getElementById = function(id) {
     return document.getElementById(id);
 }
 
 
-class Reactogram extends React.Component{
+export default class CreditCalc extends React.Component{
 	constructor(props){
 		super(props);
 
@@ -39,60 +37,41 @@ class Reactogram extends React.Component{
 		this.handleReset = this.handleReset.bind(this);
 		this.handleRateChange = this.handleRateChange.bind(this);
 		this.checkRate = this.checkRate.bind(this);
+		this.setParams = this.setParams.bind(this);
 	}
 
-	handleReset = () => {
-		const inputs = {creditsum: 50000,
-				period: 36,
-				defaultRate: 4.5,
-				rate: 4.5
-		};
-		this.setState({
-			inputs: inputs,
-			calculated: false,
-			tableData: {},
-			dataLine: {},
-			totalInterestIncome: 0,
-			annuity: 0
-		});
-	}
-
-	handleCalculate = () => {
-		let calcData = ProcessData(this.state.inputs);
-		this.setState({ 
-			tableData: calcData.tableData,
-			dataLine: calcData.dataLine,
-			annuity: calcData.annuity,
-			totalInterestIncome: calcData.totalInterestIncome,
-			calculated: true,
-		});
-	}
+	setParams = (inputs, key = undefined, val = undefined) => this.setState({ inputs, [key]: Number(val) });
 
 	handleChange = (e, vl, input) => {
-		let inputValue = parseInt(vl) ;
-		const inputs = {...this.state.inputs, [input]: Number(inputValue)};
-		this.setState({
-			inputs
-		});
+		const inputs = {...this.state.inputs, [input]: parseInt(vl)};
+		this.setParams(inputs);
+	}
+	
+	handleCalculate = () => {
+		if( this.state.inputs.rateError === '' ){
+			this.setState({...this.state, ...ProcessData(this.state.inputs), calculated: true, });
+		}
+	}
+	
+	handleReset = () => {
+		const inputs = {
+			creditsum: 50000,
+			period: 36,
+			defaultRate: 4.5,
+			rate: 4.5
+		};
+		this.setParams(inputs, 'calculated', false);
 	}
 
-	handleRateChange = 
-	debounce(
+	handleRateChange = debounce(
 		val => {
 			const checked = this.checkRate(val);
-
 			if(checked === "Ok"){
-				let inputValue = Number(val) ;
-
-				const inputs = {...this.state.inputs, rate: inputValue, rateError: '' };
-				this.setState({
-					inputs
-				});
+				const inputs = {...this.state.inputs, rate: Number(val), rateError: '' };
+				this.setParams(inputs);
 			} else {
 				const inputs = {...this.state.inputs, rateError: checked }
-				this.setState({
-					inputs
-				});
+				this.setParams(inputs);
 			}
 		}
 	, 100);
@@ -125,43 +104,20 @@ class Reactogram extends React.Component{
 					</MDBCol>
 					<MDBCol className="p-0 m-0" lg="10"  style={{background: '', minHeight: '70vh', height: '70vh', overflow: 'scroll'  }} >
 						<div>
-							{
-								this.state.calculated ? 
-									<div>
-										<MDBRow>
-											<MDBCol className="credCalcRezultLabels" lg="3">
-												Monthly payments: 
-											</MDBCol>
-											<MDBCol className="text-left credCalcRezultValues" lg="4">
-												{numeral(this.state.annuity).format('$0,0.00')}
-											</MDBCol>
-										</MDBRow>
-										<MDBRow>
-											<MDBCol className="credCalcRezultLabels" lg="3">
-												Total principal paid: 
-											</MDBCol>
-											<MDBCol className="text-left credCalcRezultValues" lg="4">
-												{numeral(this.state.inputs.creditsum).format('$0,0.00')}
-											</MDBCol>
-										</MDBRow>
-										<MDBRow>
-											<MDBCol className="credCalcRezultLabels" lg="3">
-												Total interest paid: 
-											</MDBCol>
-											<MDBCol className="text-left credCalcRezultValues" lg="4">
-												{numeral(this.state.totalInterestIncome).format('$0,0.00')}
-											</MDBCol>
-										</MDBRow>
-										<ResultChart chartData={this.state.dataLine} /> 
-										<ResultTable data={this.state.tableData} /> 
+							{ this.state.calculated ? 
+								<ComplexResult annuity ={this.state.annuity} 
+									creditsum={this.state.inputs.creditsum} 
+									totalInterestIncome={this.state.totalInterestIncome}
+									dataLine={this.state.dataLine}
+									tableData={this.state.tableData}
+								 />
+								: 
+								<div>
+									<img src={"./img/PersonalLoanIner.jpg" } alt="Loan calculator" style={{height: '70vh'}} className="credCalcImg" />
+									<div className="loanText">
+										Personal loans are an excellent option as payments and interest rates are predictable on personal loans, you have time to pay the loan back, making the repayment more realistic, interest rates are lower and no collateral is required on unsecured personal loans.
 									</div>
-									: 
-									<div>
-										<img src={"./img/PersonalLoanIner.jpg" } alt="Loan calculator" style={{height: '70vh'}} className="credCalcImg" />
-										<div className="loanText">
-											Personal loans are an excellent option as payments and interest rates are predictable on personal loans, you have time to pay the loan back, making the repayment more realistic, interest rates are lower and no collateral is required on unsecured personal loans.
-										</div>
-									</div>
+								</div>
 							}
 						</div>
 					</MDBCol>
@@ -172,35 +128,39 @@ class Reactogram extends React.Component{
 	}
 };
 
+// Element of counting complex result
+const ComplexResult = ({ annuity, creditsum, totalInterestIncome, dataLine, tableData }) => {
+	return <div>
+		<MDBRow>
+			<MDBCol className="credCalcRezultLabels" lg="3">
+				Monthly payments: 
+			</MDBCol>
+			<MDBCol className="text-left credCalcRezultValues" lg="4">
+				{numeral(annuity).format('$0,0.00')}
+			</MDBCol>
+		</MDBRow>
+		<MDBRow>
+			<MDBCol className="credCalcRezultLabels" lg="3">
+				Total principal paid: 
+			</MDBCol>
+			<MDBCol className="text-left credCalcRezultValues" lg="4">
+				{numeral(creditsum).format('$0,0.00')}
+			</MDBCol>
+		</MDBRow>
+		<MDBRow>
+			<MDBCol className="credCalcRezultLabels" lg="3">
+				Total interest paid: 
+			</MDBCol>
+			<MDBCol className="text-left credCalcRezultValues" lg="4">
+				{numeral(totalInterestIncome).format('$0,0.00')}
+			</MDBCol>
+		</MDBRow>
+		<ResultChart chartData={dataLine} /> 
+		<ResultTable data={tableData} /> 
+	</div>
+}
 
-export default Reactogram;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// http://jerairrest.github.io/react-chartjs-2/
-// https://www.bankrate.com/calculators/mortgages/loan-calculator.aspx
-// http://www.sffinance.us/personal-loan.php
 
 
 

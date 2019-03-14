@@ -68,7 +68,7 @@ class Reactogram extends React.Component{
 			<MDBContainer className="mx-0 mt-2" fluid>
 				<MDBRow>
 					<MDBCol lg="2">
-						<ReactoSettings settings={this.state.settings} handleChange={this.handleChange} handleReset={this.handleReset} />
+						<ReactoSettings settings={this.state.settings} image={this.state.img} handleChange={this.handleChange} handleReset={this.handleReset} />
 					</MDBCol>
 					<MDBCol lg="8" className="pr-lg-1" >
 						<FilterImage settings={this.state.settings} >
