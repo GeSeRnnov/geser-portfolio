@@ -18,6 +18,7 @@ class Reactogram extends React.Component{
 
 		this.state = {
 			img: './img/yoda.jpg',
+			imgName: 'yoda.jpg',
 			selectedFilter: '',
 			settings: {
 				brightness: 100,
@@ -32,6 +33,11 @@ class Reactogram extends React.Component{
 		this.handleChange = this.handleChange.bind(this);
 		this.handleReset = this.handleReset.bind(this);
 		this.handleFilterUpdate = this.handleFilterUpdate.bind(this);
+		this.handleLoader = this.handleLoader.bind(this);
+	}
+
+	componentWillUnmount(){
+		
 	}
 
 	handleFilterUpdate = (FName, FSettings) => {
@@ -41,6 +47,12 @@ class Reactogram extends React.Component{
 		});
 	}
 
+	handleLoader = (imageData, fName) => {
+		this.setState({
+			img: imageData,
+			imgName: fName
+		})
+	}
 
 	handleReset = () => {
 		let settings = {
@@ -55,8 +67,8 @@ class Reactogram extends React.Component{
 	}
 
 	handleChange = (e, vl, setting) => {
-		let settingValue = parseInt(vl) ;
-		const settings = {...this.state.settings, [setting]: Number(settingValue)};
+		// let settingValue = parseInt(vl) ;
+		const settings = {...this.state.settings, [setting]: parseInt(vl)};
 		this.setState({
 			selectedFilter: '', 
 			settings
@@ -68,7 +80,14 @@ class Reactogram extends React.Component{
 			<MDBContainer className="mx-0 mt-2" fluid>
 				<MDBRow>
 					<MDBCol lg="2">
-						<ReactoSettings settings={this.state.settings} image={this.state.img} handleChange={this.handleChange} handleReset={this.handleReset} />
+						<ReactoSettings 
+							settings={this.state.settings} 
+							image={this.state.img} 
+							imageName={this.state.imgName}
+							handleChange={this.handleChange} 
+							handleReset={this.handleReset} 
+							handleLoader={this.handleLoader} 
+						/>
 					</MDBCol>
 					<MDBCol lg="8" className="pr-lg-1" >
 						<FilterImage settings={this.state.settings} >

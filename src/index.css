@@ -60,7 +60,6 @@ line-height: 1.7;
   border-radius: 0.125rem;
 }
 .examplesTabCol{
-  /*padding-left: 0 !important;*/
   min-height: 10em;
   background: #f0fbfa;
   padding-bottom: 10px;
@@ -93,12 +92,6 @@ line-height: 1.7;
 
 }
 
-.bs-select ,.dataTables_info,.dataTables_paginate{
-  /*display: none;
-  height: 0px;*/
-}
-
-
 .dt-bootstrap4 th{
   font-size: 1.1em;
   font-weight: 400;
@@ -107,6 +100,28 @@ line-height: 1.7;
 .dt-bootstrap4 td{
   font-size: 1.1em;
   font-weight: 400;
+}
+
+.reactoChooseFile{
+  margin: 0;
+}
+
+.reactoIsNewWindow{
+  background: cyan;
+}
+
+.checkbox-warning-filled [type="checkbox"][class*='filled-in']:checked+label:after {
+  border-color: #FF8800;
+  background-color: #FF8800;
+}
+
+.form-check-input[type=checkbox].filled-in:checked+label:after, label.btn input[type=checkbox].filled-in:checked+label:after {
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #a6c;
+    background-color: #a6c;
+    z-index: 0;
 }
 
 .credCalcImg{

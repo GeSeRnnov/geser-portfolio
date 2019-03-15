@@ -10,9 +10,9 @@ export default function FilterList(props) {
 	const fListSettings = [
 		{	name: 'light',
 			settings:{
-				brightness: 150,
+				brightness: 110,
 				contrast: 110,
-				saturate: 100,
+				saturate: 170,
 				hue: 0,
 				sepia: 0,
 			},
