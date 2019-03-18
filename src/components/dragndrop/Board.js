@@ -52,18 +52,15 @@ class Board extends Component {
 			squares.push(renderSquare(i, this.props.unitPosition.position));
 		}
 		return(
-			<div>
-				<div
-					style={{
-						width: '100%',
-						height: '79.8vh',
-						display: 'flex',
-						flexWrap: 'wrap',
-					}}
-				>
-					
-					{squares}
-				</div>
+			<div
+				style={{
+					width: '100%',
+					height: '79.8vh',
+					display: 'flex',
+					flexWrap: 'wrap',
+				}}
+			>
+				{squares}
 			</div>
 		);
 }};

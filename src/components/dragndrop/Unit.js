@@ -42,7 +42,7 @@ function Unit({ connectDragSource, isDragging }) {
 	);
 };
 
-export default DragSource(ItemTypes.HORSE, unitSource, collect)(Unit)
+export default DragSource(ItemTypes.PIXIE, unitSource, collect)(Unit)
 
 
 

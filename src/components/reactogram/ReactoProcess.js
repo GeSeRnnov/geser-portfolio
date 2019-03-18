@@ -20,8 +20,7 @@ export const handleSave = (image, settings, imageName, isNewWndw) => {
 		let dwnldLink = document.createElement('a');
 		dwnldLink.setAttribute('id', 'downloadImg');
 		dwnldLink.setAttribute('download', sName);
-		dwnldLink.appendChild(myCanvas);
-		document.body.appendChild(dwnldLink);
+		document.body.appendChild(dwnldLink).appendChild(myCanvas);
 		
 		let ctx = document.getElementById('canvas').getContext('2d');
 		ctx.filter = getFilter({settings});
@@ -31,20 +30,18 @@ export const handleSave = (image, settings, imageName, isNewWndw) => {
 		dwnldLink.setAttribute('href', myCanvas.toDataURL("img/jpg"));
 
 		console.log('dwnldNm', sName);
+
+		dwnldLink.click();
+		document.body.removeChild(dwnldLink);
 		
 		if(isNewWndw){
 			var win = window.open();
 			win.document.body.appendChild(dwnldLink).appendChild(myCanvas);
-			// win.document.write('<iframe src="' + myCanvas.toDataURL("img/jpg")  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
 		}
 
-
-		dwnldLink.click();
-		dwnldLink.removeChild(myCanvas);
-		// document.body.removeChild(dwnldLink);
+		ctx = undefined; 
 		myCanvas = undefined;
 		dwnldLink = undefined;
-		ctx = undefined; 
 
 	}
 

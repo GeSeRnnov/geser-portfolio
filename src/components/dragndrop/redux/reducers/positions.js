@@ -1,5 +1,7 @@
 // it's a reducer!!!!
-const initialPosition = { position: [1, 3] };
+	
+const initialPosition = { position: [1, 3]}
+
 
 export default function(state = initialPosition, action) {
 	switch (action.type){

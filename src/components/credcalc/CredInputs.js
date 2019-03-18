@@ -5,11 +5,6 @@ import { FormControl} from 'react-bootstrap';
 
 
 export default class CredInputs extends Component{
-	constructor(props){
-		super(props);
-
-	}
-
 
 	render(){
 		const { inputs, handleChange, handleRateChange, handleCalculate, handleReset } = {...this.props}

@@ -30,7 +30,26 @@ function  renderOverlay(color){
     );
   }
 
-class  BoardSquare extends Component{
+// Passing the state to the props.
+function mapStateToProps(state){
+  return {
+    unitPosition: state,
+  };
+}
+
+// Drop specification. Derscribe, how the drop target reacts to the drag and drop events.
+const dropSpec = {
+  canDrop(props) {
+      return canMoveUnit(props.x, props.y);
+    },
+  drop(props,monitor) {
+    // console.log(props);
+    moveUnit(props.x, props.y);
+    props.movePosition([props.x, props.y]);
+  }
+}
+
+class BoardSquare extends Component{
 
   isBlack(x,y){
     return (x + y) % 2 === 1;
@@ -51,20 +70,10 @@ class  BoardSquare extends Component{
       {this.props.isOver && this.props.canDrop && renderOverlay('green')}
     </div>
   );
-}
-}
+}}
 
 
-export default reduxConnect(null, {movePosition})(DropTarget(ItemTypes.HORSE, 
-    { canDrop(props) {
-        return canMoveUnit(props.x, props.y);
-      },
-
-      drop(props,monitor) {
-        moveUnit(props.x, props.y);
-        props.movePosition([props.x, props.y]);
-      }
-    }
-
-    , collect)(BoardSquare));
+export default reduxConnect(mapStateToProps, {movePosition})(
+  DropTarget(ItemTypes.PIXIE, dropSpec, collect)(BoardSquare)
+);
 
